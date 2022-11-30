@@ -1,0 +1,12 @@
+D:\OneDrive\Estudo\projetos\C#\TicketSeller\TicketSeller.Models\bin\Debug\net6.0\TicketSeller.Models.deps.json
+D:\OneDrive\Estudo\projetos\C#\TicketSeller\TicketSeller.Models\bin\Debug\net6.0\TicketSeller.Models.dll
+D:\OneDrive\Estudo\projetos\C#\TicketSeller\TicketSeller.Models\bin\Debug\net6.0\TicketSeller.Models.pdb
+D:\OneDrive\Estudo\projetos\C#\TicketSeller\TicketSeller.Models\obj\Debug\net6.0\TicketSeller.Models.csproj.AssemblyReference.cache
+D:\OneDrive\Estudo\projetos\C#\TicketSeller\TicketSeller.Models\obj\Debug\net6.0\TicketSeller.Models.GeneratedMSBuildEditorConfig.editorconfig
+D:\OneDrive\Estudo\projetos\C#\TicketSeller\TicketSeller.Models\obj\Debug\net6.0\TicketSeller.Models.AssemblyInfoInputs.cache
+D:\OneDrive\Estudo\projetos\C#\TicketSeller\TicketSeller.Models\obj\Debug\net6.0\TicketSeller.Models.AssemblyInfo.cs
+D:\OneDrive\Estudo\projetos\C#\TicketSeller\TicketSeller.Models\obj\Debug\net6.0\TicketSeller.Models.csproj.CoreCompileInputs.cache
+D:\OneDrive\Estudo\projetos\C#\TicketSeller\TicketSeller.Models\obj\Debug\net6.0\TicketSeller.Models.dll
+D:\OneDrive\Estudo\projetos\C#\TicketSeller\TicketSeller.Models\obj\Debug\net6.0\refint\TicketSeller.Models.dll
+D:\OneDrive\Estudo\projetos\C#\TicketSeller\TicketSeller.Models\obj\Debug\net6.0\TicketSeller.Models.pdb
+D:\OneDrive\Estudo\projetos\C#\TicketSeller\TicketSeller.Models\obj\Debug\net6.0\ref\TicketSeller.Models.dll

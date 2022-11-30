@@ -4,14 +4,94 @@
     "D:\\OneDrive\\Estudo\\projetos\\C#\\TicketSeller\\TicketSeller.MVC\\TicketSeller.MVC.csproj": {}
   },
   "projects": {
-    "D:\\OneDrive\\Estudo\\projetos\\C#\\TicketSeller\\TicketSeller.MVC\\TicketSeller.MVC.csproj": {
+    "D:\\OneDrive\\Estudo\\projetos\\C#\\TicketSeller\\TicketSeller.DAL\\TicketSeller.DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\OneDrive\\Estudo\\projetos\\C#\\TicketSeller\\TicketSeller.MVC\\TicketSeller.MVC.csproj",
-        "projectName": "TicketSeller.MVC",
-        "projectPath": "D:\\OneDrive\\Estudo\\projetos\\C#\\TicketSeller\\TicketSeller.MVC\\TicketSeller.MVC.csproj",
+        "projectUniqueName": "D:\\OneDrive\\Estudo\\projetos\\C#\\TicketSeller\\TicketSeller.DAL\\TicketSeller.DAL.csproj",
+        "projectName": "TicketSeller.DAL",
+        "projectPath": "D:\\OneDrive\\Estudo\\projetos\\C#\\TicketSeller\\TicketSeller.DAL\\TicketSeller.DAL.csproj",
         "packagesPath": "C:\\Users\\rafa_\\.nuget\\packages\\",
-        "outputPath": "D:\\OneDrive\\Estudo\\projetos\\C#\\TicketSeller\\TicketSeller.MVC\\obj\\",
+        "outputPath": "D:\\OneDrive\\Estudo\\projetos\\C#\\TicketSeller\\TicketSeller.DAL\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Apps\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\rafa_\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\OneDrive\\Estudo\\projetos\\C#\\TicketSeller\\TicketSeller.Models\\TicketSeller.Models.csproj": {
+                "projectPath": "D:\\OneDrive\\Estudo\\projetos\\C#\\TicketSeller\\TicketSeller.Models\\TicketSeller.Models.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\OneDrive\\Estudo\\projetos\\C#\\TicketSeller\\TicketSeller.Models\\TicketSeller.Models.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\OneDrive\\Estudo\\projetos\\C#\\TicketSeller\\TicketSeller.Models\\TicketSeller.Models.csproj",
+        "projectName": "TicketSeller.Models",
+        "projectPath": "D:\\OneDrive\\Estudo\\projetos\\C#\\TicketSeller\\TicketSeller.Models\\TicketSeller.Models.csproj",
+        "packagesPath": "C:\\Users\\rafa_\\.nuget\\packages\\",
+        "outputPath": "D:\\OneDrive\\Estudo\\projetos\\C#\\TicketSeller\\TicketSeller.Models\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Apps\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -44,10 +124,89 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\OneDrive\\Estudo\\projetos\\C#\\TicketSeller\\TicketSeller.MVC\\TicketSeller.MVC.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\OneDrive\\Estudo\\projetos\\C#\\TicketSeller\\TicketSeller.MVC\\TicketSeller.MVC.csproj",
+        "projectName": "TicketSeller.MVC",
+        "projectPath": "D:\\OneDrive\\Estudo\\projetos\\C#\\TicketSeller\\TicketSeller.MVC\\TicketSeller.MVC.csproj",
+        "packagesPath": "C:\\Users\\rafa_\\.nuget\\packages\\",
+        "outputPath": "D:\\OneDrive\\Estudo\\projetos\\C#\\TicketSeller\\TicketSeller.MVC\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Apps\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\rafa_\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\OneDrive\\Estudo\\projetos\\C#\\TicketSeller\\TicketSeller.DAL\\TicketSeller.DAL.csproj": {
+                "projectPath": "D:\\OneDrive\\Estudo\\projetos\\C#\\TicketSeller\\TicketSeller.DAL\\TicketSeller.DAL.csproj"
+              },
+              "D:\\OneDrive\\Estudo\\projetos\\C#\\TicketSeller\\TicketSeller.Services\\TicketSeller.Services.csproj": {
+                "projectPath": "D:\\OneDrive\\Estudo\\projetos\\C#\\TicketSeller\\TicketSeller.Services\\TicketSeller.Services.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[12.0.0, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.0, )"
+            },
+            "FluentResults": {
+              "target": "Package",
+              "version": "[3.15.0, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[6.2.3, )"
+              "version": "[6.4.0, )"
             }
           },
           "imports": [
@@ -65,6 +224,87 @@
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
             },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\OneDrive\\Estudo\\projetos\\C#\\TicketSeller\\TicketSeller.Services\\TicketSeller.Services.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\OneDrive\\Estudo\\projetos\\C#\\TicketSeller\\TicketSeller.Services\\TicketSeller.Services.csproj",
+        "projectName": "TicketSeller.Services",
+        "projectPath": "D:\\OneDrive\\Estudo\\projetos\\C#\\TicketSeller\\TicketSeller.Services\\TicketSeller.Services.csproj",
+        "packagesPath": "C:\\Users\\rafa_\\.nuget\\packages\\",
+        "outputPath": "D:\\OneDrive\\Estudo\\projetos\\C#\\TicketSeller\\TicketSeller.Services\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Apps\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\rafa_\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\OneDrive\\Estudo\\projetos\\C#\\TicketSeller\\TicketSeller.DAL\\TicketSeller.DAL.csproj": {
+                "projectPath": "D:\\OneDrive\\Estudo\\projetos\\C#\\TicketSeller\\TicketSeller.DAL\\TicketSeller.DAL.csproj"
+              },
+              "D:\\OneDrive\\Estudo\\projetos\\C#\\TicketSeller\\TicketSeller.Models\\TicketSeller.Models.csproj": {
+                "projectPath": "D:\\OneDrive\\Estudo\\projetos\\C#\\TicketSeller\\TicketSeller.Models\\TicketSeller.Models.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[12.0.0, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.0, )"
+            },
+            "FluentResults": {
+              "target": "Package",
+              "version": "[3.15.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }

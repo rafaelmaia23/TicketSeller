@@ -1,0 +1,17 @@
+D:\OneDrive\Estudo\projetos\C#\TicketSeller\TicketSeller.DAL\bin\Debug\net6.0\TicketSeller.DAL.deps.json
+D:\OneDrive\Estudo\projetos\C#\TicketSeller\TicketSeller.DAL\bin\Debug\net6.0\TicketSeller.DAL.runtimeconfig.json
+D:\OneDrive\Estudo\projetos\C#\TicketSeller\TicketSeller.DAL\bin\Debug\net6.0\TicketSeller.DAL.dll
+D:\OneDrive\Estudo\projetos\C#\TicketSeller\TicketSeller.DAL\bin\Debug\net6.0\TicketSeller.DAL.pdb
+D:\OneDrive\Estudo\projetos\C#\TicketSeller\TicketSeller.DAL\obj\Debug\net6.0\TicketSeller.DAL.csproj.AssemblyReference.cache
+D:\OneDrive\Estudo\projetos\C#\TicketSeller\TicketSeller.DAL\obj\Debug\net6.0\TicketSeller.DAL.GeneratedMSBuildEditorConfig.editorconfig
+D:\OneDrive\Estudo\projetos\C#\TicketSeller\TicketSeller.DAL\obj\Debug\net6.0\TicketSeller.DAL.AssemblyInfoInputs.cache
+D:\OneDrive\Estudo\projetos\C#\TicketSeller\TicketSeller.DAL\obj\Debug\net6.0\TicketSeller.DAL.AssemblyInfo.cs
+D:\OneDrive\Estudo\projetos\C#\TicketSeller\TicketSeller.DAL\obj\Debug\net6.0\TicketSeller.DAL.csproj.CoreCompileInputs.cache
+D:\OneDrive\Estudo\projetos\C#\TicketSeller\TicketSeller.DAL\obj\Debug\net6.0\TicketSeller.DAL.dll
+D:\OneDrive\Estudo\projetos\C#\TicketSeller\TicketSeller.DAL\obj\Debug\net6.0\refint\TicketSeller.DAL.dll
+D:\OneDrive\Estudo\projetos\C#\TicketSeller\TicketSeller.DAL\obj\Debug\net6.0\TicketSeller.DAL.pdb
+D:\OneDrive\Estudo\projetos\C#\TicketSeller\TicketSeller.DAL\obj\Debug\net6.0\TicketSeller.DAL.genruntimeconfig.cache
+D:\OneDrive\Estudo\projetos\C#\TicketSeller\TicketSeller.DAL\obj\Debug\net6.0\ref\TicketSeller.DAL.dll
+D:\OneDrive\Estudo\projetos\C#\TicketSeller\TicketSeller.DAL\bin\Debug\net6.0\TicketSeller.Models.dll
+D:\OneDrive\Estudo\projetos\C#\TicketSeller\TicketSeller.DAL\bin\Debug\net6.0\TicketSeller.Models.pdb
+D:\OneDrive\Estudo\projetos\C#\TicketSeller\TicketSeller.DAL\obj\Debug\net6.0\TicketSeller.DAL.csproj.CopyComplete
