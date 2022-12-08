@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace TicketSeller.Models.Models
 {
@@ -30,6 +31,8 @@ namespace TicketSeller.Models.Models
         [Required]
         [StringLength(80)]
         public string Contry { get; set; }
+        [Required]
+        [JsonIgnore]
         public virtual Cinema Cinema { get; set; }
     }
 }

@@ -24,9 +24,9 @@ namespace TicketSeller.API.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAdress()
+        public IActionResult GetAdresses()
         {
-            IEnumerable<ReadAdressDto> readAdressDtos = _adressService.GetAdress();
+            IEnumerable<ReadAdressDto> readAdressDtos = _adressService.GetAdresses();
             if (readAdressDtos != null) return Ok(readAdressDtos);
             return NotFound();
         }
@@ -51,7 +51,11 @@ namespace TicketSeller.API.Controllers
         public IActionResult DeleteMovie(int id)
         {
             Result result = _adressService.DeleteAdress(id);
-            if (result.IsSuccess) return NoContent();
+            if (result != null)
+            {
+                if (result.IsFailed) return Conflict(result.Errors);
+                if (result.IsSuccess) return NoContent();
+            }
             return NotFound();
         }
     }

@@ -25,7 +25,7 @@ namespace TicketSeller.Services.Services
             _unitOfWork.Save();
             return _mapper.Map<ReadAdressDto>(adress);
         }
-        public IEnumerable<ReadAdressDto> GetAdress()
+        public IEnumerable<ReadAdressDto> GetAdresses()
         {
             IEnumerable<Adress> adresses = _unitOfWork.Adress.GetAll();
             IEnumerable<ReadAdressDto> readAdressDtos = _mapper.Map<List<ReadAdressDto>>(adresses);
@@ -65,7 +65,8 @@ namespace TicketSeller.Services.Services
         public Result DeleteAdress(int id)
         {
             Adress adress = _unitOfWork.Adress.GetById(id);
-            if (adress == null) return Result.Fail("Adress Not Found");
+            if (adress == null) return null;
+            if (adress.Cinema != null) return Result.Fail("Cannot delete a Adress that contain a Cinema");
             _unitOfWork.Adress.Remove(adress);
             _unitOfWork.Save();
             return Result.Ok();

@@ -8,7 +8,6 @@ namespace TicketSeller.Services.Services.IServices
         ReadMovieDto AddMovie(CreateMovieDto createMovieDto);
         IEnumerable<ReadMovieDto> GetMovies();
         IEnumerable<ReadMovieDto> GetMoviesByGenre(int genreId);
-        //IEnumerable<ReadMovieDto> GetMovies(int? genreId);
         ReadMovieDto GetMovieById(int id);
         Result PutMovie(int id, UpdateMovieDto updadeMovieDto);
         Result DeleteMovie(int id);

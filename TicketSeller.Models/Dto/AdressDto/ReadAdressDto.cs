@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
+using TicketSeller.Models.Models;
 
 namespace TicketSeller.Models.Dto.AdressDto
 {
@@ -29,5 +31,7 @@ namespace TicketSeller.Models.Dto.AdressDto
         [Required]
         [StringLength(80)]
         public string Contry { get; set; }
+        [Required]        
+        public Cinema Cinema { get; set; }
     }
 }

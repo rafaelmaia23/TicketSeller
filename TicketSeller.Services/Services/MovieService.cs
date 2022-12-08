@@ -119,6 +119,10 @@ namespace TicketSeller.Services.Services
         {
             Movie movie = _unitOfWork.Movie.GetById(id);
             if(movie == null) return Result.Fail("Movie Not Found");
+            //foreach(MovieGenres movieGenres in movie.MovieGenres)
+            //{
+            //    _unitOfWork.
+            //}
             _unitOfWork.Movie.Remove(movie);
             _unitOfWork.Save();
             return Result.Ok();

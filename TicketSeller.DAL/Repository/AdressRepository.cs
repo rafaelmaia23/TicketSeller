@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,7 +21,14 @@ namespace TicketSeller.DAL.Repository
 
         public override Adress GetById(int id)
         {
-            return _db.Adresses.FirstOrDefault(x => x.Id == id);
+            return _db.Adresses
+                .FirstOrDefault(x => x.Id == id);
+        }
+
+        public override IEnumerable<Adress> GetAll()
+        {
+            return _db.Adresses
+                .ToList();
         }
     }
 }

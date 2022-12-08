@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +20,16 @@ namespace TicketSeller.DAL.Repository
         }
         public override Cinema GetById(int id)
         {
-            return _db.Cinemas.FirstOrDefault(x => x.Id == id);
+            return _db.Cinemas
+                .Include(a => a.Adress)
+                .FirstOrDefault(x => x.Id == id);
+        }
+
+        public override IEnumerable<Cinema> GetAll()
+        {
+            return _db.Cinemas
+                .Include(a => a.Adress)
+                .ToList();
         }
     }
 }
