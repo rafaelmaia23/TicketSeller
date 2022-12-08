@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TicketSeller.Models.Models;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace TicketSeller.Models.Dto.GenreDto
 {
@@ -15,6 +9,6 @@ namespace TicketSeller.Models.Dto.GenreDto
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
-        public ICollection<MovieGenres> MovieGenres { get; set; }
+        public ICollection<object> MovieGenres { get; set; }
     }
 }

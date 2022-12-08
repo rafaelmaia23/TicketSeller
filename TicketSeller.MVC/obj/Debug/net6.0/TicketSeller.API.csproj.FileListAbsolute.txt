@@ -81,3 +81,5 @@ D:\OneDrive\Estudo\projetos\C#\TicketSeller\TicketSeller.MVC\obj\Debug\net6.0\re
 D:\OneDrive\Estudo\projetos\C#\TicketSeller\TicketSeller.MVC\obj\Debug\net6.0\TicketSeller.API.pdb
 D:\OneDrive\Estudo\projetos\C#\TicketSeller\TicketSeller.MVC\obj\Debug\net6.0\TicketSeller.API.genruntimeconfig.cache
 D:\OneDrive\Estudo\projetos\C#\TicketSeller\TicketSeller.MVC\obj\Debug\net6.0\ref\TicketSeller.API.dll
+D:\OneDrive\Estudo\projetos\C#\TicketSeller\TicketSeller.MVC\bin\Debug\net6.0\Castle.Core.dll
+D:\OneDrive\Estudo\projetos\C#\TicketSeller\TicketSeller.MVC\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Proxies.dll

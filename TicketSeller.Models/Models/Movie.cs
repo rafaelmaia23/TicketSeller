@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace TicketSeller.Models.Models
 {
@@ -20,7 +15,7 @@ namespace TicketSeller.Models.Models
         public int Duration { get; set; }
         [Required]
         public string Director { get; set; }
-        public ICollection<MovieGenres> MovieGenres { get; set; }
+        public virtual ICollection<MovieGenres> MovieGenres { get; set; }
         [Required]
         public int Classification { get; set; }
 

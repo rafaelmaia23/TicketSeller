@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TicketSeller.DAL.Data;
+﻿using TicketSeller.DAL.Data;
 using TicketSeller.DAL.Repository.IRepository;
 using TicketSeller.Models.Models;
 
@@ -15,6 +10,11 @@ namespace TicketSeller.DAL.Repository
         public MovieGenresRepository(AppDbContext db) : base(db)
         {
             _db = db;
+        }
+
+        public void Update(MovieGenres movieGenres)
+        {
+            _db.MoviesGenres.Update(movieGenres);
         }
     }
 }

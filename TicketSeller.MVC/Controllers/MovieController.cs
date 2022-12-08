@@ -1,7 +1,7 @@
 ﻿using FluentResults;
 using Microsoft.AspNetCore.Mvc;
 using TicketSeller.Models.Dto.MovieDto;
-using TicketSeller.Services.IServices;
+using TicketSeller.Services.Services.IServices;
 
 namespace TicketSeller.API.Controllers
 {
@@ -23,11 +23,26 @@ namespace TicketSeller.API.Controllers
             return CreatedAtAction(nameof(GetMovieById), new { id = readMovieDto.Id }, readMovieDto);
         }
 
+        //[HttpGet]
+        //public IActionResult GetMovies([FromQuery] int? genreId)
+        //{
+        //    IEnumerable<ReadMovieDto> readMovieDto = _movieService.GetMovies(genreId);
+        //    if (readMovieDto != null) return Ok(readMovieDto);
+        //    return NotFound();
+        //}
         [HttpGet]
         public IActionResult GetMovies()
         {
-            IEnumerable<ReadMovieDto> readMovieDto = _movieService.GetMovies();
-            if(readMovieDto != null) return Ok(readMovieDto);
+            IEnumerable<ReadMovieDto> readMovieDtos = _movieService.GetMovies();
+            if (readMovieDtos != null) return Ok(readMovieDtos);
+            return NotFound();
+        }
+
+        [HttpGet("Genre/{genreId}")]
+        public IActionResult GetMoviesByGenre(int genreId)
+        {
+            IEnumerable<ReadMovieDto> readMovieDto = _movieService.GetMoviesByGenre(genreId);
+            if (readMovieDto != null) return Ok(readMovieDto);
             return NotFound();
         }
 

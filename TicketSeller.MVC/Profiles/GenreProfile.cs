@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using TicketSeller.Models.Dto.GenreDto;
-using TicketSeller.Models.Dto.MovieDto;
 using TicketSeller.Models.Models;
 
 namespace TicketSeller.API.Profiles
@@ -9,7 +8,10 @@ namespace TicketSeller.API.Profiles
     {
         public GenreProfile()
         {
-            CreateMap<Genre, ReadGenreDto>();
+            CreateMap<Genre, ReadGenreDto>()
+                .ForMember(genre => genre.MovieGenres, opts => opts
+                .MapFrom(genre => genre.MovieGenres.Select(
+                    m => new { m.MovieId, m.Movie.Title })));
             CreateMap<CreateGenreDto, Genre>();
             CreateMap<UpdateGenreDto, Genre>(); 
         }

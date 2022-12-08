@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 using TicketSeller.DAL.Data;
 using TicketSeller.DAL.Repository.IRepository;
 
@@ -31,14 +26,14 @@ namespace TicketSeller.DAL.Repository
             return _db.Set<T>().Where(expression);
         }
 
-        public IEnumerable<T> GetAll()
+        public virtual IEnumerable<T> GetAll()
         {
             return dbSet.ToList();
         }
 
-        public T GetById(int id)
+        public virtual T GetById(int id)
         {
-            return _db.Set<T>().Find(id);
+            return _db.Set<T>().FirstOrDefault();
         }
 
         public void Remove(T entity)

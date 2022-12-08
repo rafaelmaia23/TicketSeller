@@ -2,8 +2,6 @@ using Microsoft.EntityFrameworkCore;
 using TicketSeller.DAL.Data;
 using TicketSeller.DAL.Repository;
 using TicketSeller.DAL.Repository.IRepository;
-using TicketSeller.Services;
-using TicketSeller.Services.IServices;
 using TicketSeller.Services.Services;
 using TicketSeller.Services.Services.IServices;
 
@@ -12,11 +10,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(
+builder.Services.AddDbContext<AppDbContext>(options => options.UseLazyLoadingProxies().UseSqlServer(
     builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IMovieService, MovieService>();
 builder.Services.AddScoped<IGenreService, GenreService>();
+builder.Services.AddScoped<IAdressService, AdressService>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

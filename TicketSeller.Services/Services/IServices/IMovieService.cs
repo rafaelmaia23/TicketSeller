@@ -1,12 +1,14 @@
 ﻿using FluentResults;
 using TicketSeller.Models.Dto.MovieDto;
 
-namespace TicketSeller.Services.IServices
+namespace TicketSeller.Services.Services.IServices
 {
     public interface IMovieService
     {
-        ReadMovieDto AddMovie(CreateMovieDto createMovieDto);        
+        ReadMovieDto AddMovie(CreateMovieDto createMovieDto);
         IEnumerable<ReadMovieDto> GetMovies();
+        IEnumerable<ReadMovieDto> GetMoviesByGenre(int genreId);
+        //IEnumerable<ReadMovieDto> GetMovies(int? genreId);
         ReadMovieDto GetMovieById(int id);
         Result PutMovie(int id, UpdateMovieDto updadeMovieDto);
         Result DeleteMovie(int id);

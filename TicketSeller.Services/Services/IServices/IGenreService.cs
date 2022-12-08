@@ -1,11 +1,5 @@
 ﻿using FluentResults;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TicketSeller.Models.Dto.GenreDto;
-using TicketSeller.Models.Dto.MovieDto;
 
 namespace TicketSeller.Services.Services.IServices
 {

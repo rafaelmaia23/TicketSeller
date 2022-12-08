@@ -17,9 +17,89 @@ namespace TicketSeller.DAL.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.0")
+                .HasAnnotation("Proxies:ChangeTracking", false)
+                .HasAnnotation("Proxies:CheckEquality", false)
+                .HasAnnotation("Proxies:LazyLoading", true)
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("TicketSeller.Models.Models.Adress", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Complement")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("Contry")
+                        .IsRequired()
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
+
+                    b.Property<string>("Number")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("Reference")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("State")
+                        .IsRequired()
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
+
+                    b.Property<string>("Street")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("ZipCode")
+                        .IsRequired()
+                        .HasMaxLength(8)
+                        .HasColumnType("nvarchar(8)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Adresses");
+                });
+
+            modelBuilder.Entity("TicketSeller.Models.Models.Cinema", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AdressId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AdressId")
+                        .IsUnique();
+
+                    b.ToTable("Cinemas");
+                });
 
             modelBuilder.Entity("TicketSeller.Models.Models.Genre", b =>
                 {
@@ -92,6 +172,17 @@ namespace TicketSeller.DAL.Migrations
                     b.ToTable("MoviesGenres");
                 });
 
+            modelBuilder.Entity("TicketSeller.Models.Models.Cinema", b =>
+                {
+                    b.HasOne("TicketSeller.Models.Models.Adress", "Adress")
+                        .WithOne("Cinema")
+                        .HasForeignKey("TicketSeller.Models.Models.Cinema", "AdressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Adress");
+                });
+
             modelBuilder.Entity("TicketSeller.Models.Models.MovieGenres", b =>
                 {
                     b.HasOne("TicketSeller.Models.Models.Genre", "Genre")
@@ -109,6 +200,12 @@ namespace TicketSeller.DAL.Migrations
                     b.Navigation("Genre");
 
                     b.Navigation("Movie");
+                });
+
+            modelBuilder.Entity("TicketSeller.Models.Models.Adress", b =>
+                {
+                    b.Navigation("Cinema")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("TicketSeller.Models.Models.Genre", b =>

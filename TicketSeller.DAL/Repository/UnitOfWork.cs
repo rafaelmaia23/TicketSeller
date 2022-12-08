@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TicketSeller.DAL.Data;
+﻿using TicketSeller.DAL.Data;
 using TicketSeller.DAL.Repository.IRepository;
-using TicketSeller.Models.Models;
 
 namespace TicketSeller.DAL.Repository
 {
@@ -18,10 +12,14 @@ namespace TicketSeller.DAL.Repository
             Movie = new MovieRepository(_db);
             Genre = new GenreRepository(_db);
             MovieGenres = new MovieGenresRepository(_db);
+            Adress = new AdressRepository(_db);
+            Cinema = new CinemaRepository(_db);
         }
         public IMovieRepository Movie { get; private set; }
         public IGenreRepository Genre { get; private set; }
         public IMovieGenresRepository MovieGenres { get; private set; }
+        public IAdressRepository Adress { get; private set; }
+        public ICinemaRepository Cinema { get; private set; }
 
         public void Save()
         {

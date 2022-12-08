@@ -1,19 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace TicketSeller.Models.Models
 {
     public class MovieGenres
     {
         [Key]
+        [Required]
         public int Id { get; set; }
+        [Required]
         public int MovieId { get; set; }
-        public Movie Movie { get; set; }
+        [Required]
+        public virtual Movie Movie { get; set; }
+        [Required]
         public int GenreId { get; set; }
-        public Genre Genre { get; set; }
+        [Required]
+        public virtual Genre Genre { get; set; }
     }
 }

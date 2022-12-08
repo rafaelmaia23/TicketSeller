@@ -1,6 +1,5 @@
 ﻿using FluentResults;
 using Microsoft.AspNetCore.Mvc;
-using TicketSeller.DAL.Repository.IRepository;
 using TicketSeller.Models.Dto.GenreDto;
 using TicketSeller.Services.Services.IServices;
 
