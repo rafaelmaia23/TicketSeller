@@ -701,6 +701,9 @@
         }
       },
       "TicketSeller.Models/1.0.0": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "7.0.0"
+        },
         "runtime": {
           "TicketSeller.Models.dll": {}
         }

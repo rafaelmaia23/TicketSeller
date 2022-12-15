@@ -31,20 +31,9 @@ namespace TicketSeller.Services.Services
             IEnumerable<ReadAdressDto> readAdressDtos = _mapper.Map<List<ReadAdressDto>>(adresses);
             return readAdressDtos;
         }
-
-        //public ReadAdressDto GetAdressById(int id)
-        //{
-        //    Adress adress = _unitOfWork.Adress.GetById(id);
-        //    if(adress != null)
-        //    {
-        //        ReadAdressDto readAdressDto = _mapper.Map<ReadAdressDto>(adress);
-        //        return readAdressDto;
-        //    }
-        //    return null;
-        //}
         public ReadAdressDto GetAdressById(int id)
         {
-            Adress adress = _unitOfWork.Adress.GetById(id);
+            Adress adress = _unitOfWork.Adress.GetById(x => x.Id == id);
             if (adress != null)
             {
                 ReadAdressDto readAdressDto = _mapper.Map<ReadAdressDto>(adress);
@@ -55,7 +44,7 @@ namespace TicketSeller.Services.Services
 
         public Result PutAdress(int id, UpdateAdressDto updadeAdressDto)
         {
-            Adress adress = _unitOfWork.Adress.GetById(id);
+            Adress adress = _unitOfWork.Adress.GetById(x => x.Id == id);
             if (adress == null) return Result.Fail("Adress Not Found");
             _mapper.Map(updadeAdressDto, adress);
             _unitOfWork.Save();
@@ -64,7 +53,7 @@ namespace TicketSeller.Services.Services
 
         public Result DeleteAdress(int id)
         {
-            Adress adress = _unitOfWork.Adress.GetById(id);
+            Adress adress = _unitOfWork.Adress.GetById(x => x.Id == id);
             if (adress == null) return null;
             if (adress.Cinema != null) return Result.Fail("Cannot delete a Adress that contain a Cinema");
             _unitOfWork.Adress.Remove(adress);

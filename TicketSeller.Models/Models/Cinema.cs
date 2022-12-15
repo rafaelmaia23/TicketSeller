@@ -22,5 +22,6 @@ namespace TicketSeller.Models.Models
         public int AdressId { get; set; }
         [JsonIgnore]
         public virtual Adress Adress { get; set; }
+        public virtual List<MovieSession> MovieSessions { get; set; }
     }
 }

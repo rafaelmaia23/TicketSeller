@@ -31,9 +31,9 @@ namespace TicketSeller.DAL.Repository
             return dbSet.ToList();
         }
 
-        public virtual T GetById(int id)
+        public virtual T GetById(Expression<Func<T, bool>> expression)
         {
-            return _db.Set<T>().FirstOrDefault();
+            return _db.Set<T>().FirstOrDefault(expression);
         }
 
         public void Remove(T entity)

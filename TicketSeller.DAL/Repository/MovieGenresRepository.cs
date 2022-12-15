@@ -4,7 +4,7 @@ using TicketSeller.Models.Models;
 
 namespace TicketSeller.DAL.Repository
 {
-    public class MovieGenresRepository : Repository<MovieGenres>, IMovieGenresRepository
+    public class MovieGenresRepository : Repository<MovieGenre>, IMovieGenresRepository
     {
         private readonly AppDbContext _db;
         public MovieGenresRepository(AppDbContext db) : base(db)
@@ -12,7 +12,7 @@ namespace TicketSeller.DAL.Repository
             _db = db;
         }
 
-        public void Update(MovieGenres movieGenres)
+        public void Update(MovieGenre movieGenres)
         {
             _db.MoviesGenres.Update(movieGenres);
         }

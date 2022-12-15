@@ -2,8 +2,8 @@
 
 namespace TicketSeller.DAL.Repository.IRepository
 {
-    public interface IMovieGenresRepository : IRepository<MovieGenres>
+    public interface IMovieGenresRepository : IRepository<MovieGenre>
     {
-        void Update(MovieGenres movieGenres);
+        void Update(MovieGenre movieGenres);
     }
 }

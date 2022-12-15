@@ -19,6 +19,11 @@ namespace TicketSeller.Services.Services
         }
         public ReadCinemaDto AddCinema(CreateCinemaDto createCinemaDto)
         {
+            Adress adress = _unitOfWork.Adress.GetById(x => x.Id == createCinemaDto.AdressId);
+            if(adress.Cinema != null)
+            {
+                return null;
+            }
             Cinema cinema = _mapper.Map<Cinema>(createCinemaDto);
             _unitOfWork.Cinema.Add(cinema);
             _unitOfWork.Save();
@@ -34,7 +39,7 @@ namespace TicketSeller.Services.Services
 
         public ReadCinemaDto GetCinemaById(int id)
         {
-            Cinema cinema = _unitOfWork.Cinema.GetById(id);
+            Cinema cinema = _unitOfWork.Cinema.GetById(x => x.Id == id);
             if(cinema != null)
             {
                 ReadCinemaDto readCinemaDto = _mapper.Map<ReadCinemaDto>(cinema);
@@ -45,7 +50,7 @@ namespace TicketSeller.Services.Services
 
         public Result PutCinema(int id, UpdateCinemaDto updateCinemaDto)
         {
-            Cinema cinema = _unitOfWork.Cinema.GetById(id);
+            Cinema cinema = _unitOfWork.Cinema.GetById(x => x.Id == id);
             if (cinema == null) return Result.Fail("Cinema Not Found");
             _mapper.Map(updateCinemaDto, cinema);
             _unitOfWork.Save();
@@ -54,7 +59,7 @@ namespace TicketSeller.Services.Services
 
         public Result DeleteCinema(int id)
         {
-            Cinema cinema = _unitOfWork.Cinema.GetById(id);
+            Cinema cinema = _unitOfWork.Cinema.GetById(x => x.Id == id);
             if (cinema == null) return Result.Fail("Cinema Not Found");
             _unitOfWork.Adress.Remove(cinema.Adress);
             _unitOfWork.Cinema.Remove(cinema);

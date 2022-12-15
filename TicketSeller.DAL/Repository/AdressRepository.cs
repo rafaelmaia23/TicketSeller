@@ -19,12 +19,6 @@ namespace TicketSeller.DAL.Repository
             _db = db;
         }
 
-        public override Adress GetById(int id)
-        {
-            return _db.Adresses
-                .FirstOrDefault(x => x.Id == id);
-        }
-
         public override IEnumerable<Adress> GetAll()
         {
             return _db.Adresses

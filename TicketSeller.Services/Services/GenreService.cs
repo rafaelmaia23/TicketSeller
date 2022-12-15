@@ -36,7 +36,7 @@ namespace TicketSeller.Services.Services
 
         public ReadGenreDto GetGenreById(int id)
         {
-            Genre genre = _unitOfWork.Genre.GetById(id);
+            Genre genre = _unitOfWork.Genre.GetById(x => x.Id == id);
             if(genre != null)
             {
                 ReadGenreDto readGenreDto = _mapper.Map<ReadGenreDto>(genre);
@@ -47,7 +47,7 @@ namespace TicketSeller.Services.Services
 
         public Result PutGenre(int id, UpdateGenreDto updadeGenreDto)
         {
-            Genre genre = _unitOfWork.Genre.GetById(id);
+            Genre genre = _unitOfWork.Genre.GetById(x => x.Id == id);
             if(genre == null) return Result.Fail("Genre Not Found");
             _mapper.Map(updadeGenreDto, genre);
             _unitOfWork.Save();
@@ -56,7 +56,7 @@ namespace TicketSeller.Services.Services
 
         public Result DeleteGenre(int id)
         {
-            Genre genre = _unitOfWork.Genre.GetById(id);
+            Genre genre = _unitOfWork.Genre.GetById(x => x.Id == id);
             if(genre == null) return null;
             if (genre.MovieGenres.Count != 0) return Result.Fail("Cannot delete a Genre that contain Movies");
             _unitOfWork.Genre.Remove(genre);

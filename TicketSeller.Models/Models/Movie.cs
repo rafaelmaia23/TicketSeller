@@ -15,9 +15,10 @@ namespace TicketSeller.Models.Models
         public int Duration { get; set; }
         [Required]
         public string Director { get; set; }
-        public virtual ICollection<MovieGenres> MovieGenres { get; set; }
+        public virtual ICollection<MovieGenre> MovieGenres { get; set; }
         [Required]
         public int Classification { get; set; }
+        public virtual List<MovieSession> MovieSessions { get; set; }
 
     }
 }

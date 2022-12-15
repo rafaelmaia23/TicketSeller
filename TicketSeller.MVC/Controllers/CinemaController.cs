@@ -20,6 +20,7 @@ namespace TicketSeller.API.Controllers
         public IActionResult AddCinema([FromBody] CreateCinemaDto createCinemaDto)
         {
             ReadCinemaDto readCinemaDto = _cinemaService.AddCinema(createCinemaDto);
+            if(readCinemaDto == null) return Conflict();
             return CreatedAtAction(nameof(GetCinemaById), new { id = readCinemaDto.Id }, readCinemaDto);
         }
 

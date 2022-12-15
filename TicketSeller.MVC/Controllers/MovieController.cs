@@ -23,18 +23,19 @@ namespace TicketSeller.API.Controllers
             return CreatedAtAction(nameof(GetMovieById), new { id = readMovieDto.Id }, readMovieDto);
         }
 
-        //[HttpGet]
-        //public IActionResult GetMovies([FromQuery] int? genreId)
-        //{
-        //    IEnumerable<ReadMovieDto> readMovieDto = _movieService.GetMovies(genreId);
-        //    if (readMovieDto != null) return Ok(readMovieDto);
-        //    return NotFound();
-        //}
         [HttpGet]
         public IActionResult GetMovies()
         {
             IEnumerable<ReadMovieDto> readMovieDtos = _movieService.GetMovies();
             if (readMovieDtos != null) return Ok(readMovieDtos);
+            return NotFound();
+        }        
+
+        [HttpGet("{id}")]
+        public IActionResult GetMovieById(int id)
+        {
+            ReadMovieDto readMovieDto = _movieService.GetMovieById(id);
+            if(readMovieDto != null) return Ok(readMovieDto);
             return NotFound();
         }
 
@@ -45,14 +46,6 @@ namespace TicketSeller.API.Controllers
             if (readMovieDto != null) return Ok(readMovieDto);
             return NotFound();
         }
-
-        [HttpGet("{id}")]
-        public IActionResult GetMovieById(int id)
-        {
-            ReadMovieDto readMovieDto = _movieService.GetMovieById(id);
-            if(readMovieDto != null) return Ok(readMovieDto);
-            return NotFound();
-        }        
 
         [HttpPut("{id}")]
         public IActionResult PutMovie(int id, [FromBody] UpdateMovieDto updateMovieDto)

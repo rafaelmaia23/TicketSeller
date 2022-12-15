@@ -23,5 +23,6 @@ namespace TicketSeller.Models.Dto.CinemaDto
         public int AdressId { get; set; }
         [Required]
         public Adress Adress { get; set; }
+        public List<MovieSession> Sessions { get; set; }
     }
 }

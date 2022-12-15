@@ -2,7 +2,7 @@
 
 namespace TicketSeller.Models.Models
 {
-    public class MovieGenres
+    public class MovieGenre
     {
         [Key]
         [Required]

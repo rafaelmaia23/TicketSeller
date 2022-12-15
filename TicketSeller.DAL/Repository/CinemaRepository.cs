@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using TicketSeller.DAL.Data;
@@ -18,11 +19,11 @@ namespace TicketSeller.DAL.Repository
         {
             _db = db;
         }
-        public override Cinema GetById(int id)
+        public override Cinema GetById(Expression<Func<Cinema, bool>> expression)
         {
             return _db.Cinemas
                 .Include(a => a.Adress)
-                .FirstOrDefault(x => x.Id == id);
+                .FirstOrDefault(expression);
         }
 
         public override IEnumerable<Cinema> GetAll()

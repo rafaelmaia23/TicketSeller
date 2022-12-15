@@ -4,9 +4,10 @@
     {
         IMovieRepository Movie { get; }
         IGenreRepository Genre { get; }
-        IMovieGenresRepository MovieGenres { get; }
+        IMovieGenresRepository MovieGenre { get; }
         IAdressRepository Adress { get; }
         ICinemaRepository Cinema { get; }
+        IMovieSessionRepository MovieSession { get; }
         void Save();
     }
 }
