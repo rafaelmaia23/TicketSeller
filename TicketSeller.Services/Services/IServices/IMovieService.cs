@@ -11,5 +11,6 @@ namespace TicketSeller.Services.Services.IServices
         ReadMovieDto GetMovieById(int id);
         Result PutMovie(int id, UpdateMovieDto updadeMovieDto);
         Result DeleteMovie(int id);
+        IEnumerable<ReadMovieDto> GetMoviesByCinema(int cinemaId);
     }
 }

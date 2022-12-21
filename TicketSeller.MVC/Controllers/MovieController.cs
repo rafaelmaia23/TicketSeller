@@ -47,6 +47,14 @@ namespace TicketSeller.API.Controllers
             return NotFound();
         }
 
+        [HttpGet("Cinema/{cinemaId}")]
+        public IActionResult GetMoviesByCinema(int cinemaId)
+        {
+            IEnumerable<ReadMovieDto> readMovieDto = _movieService.GetMoviesByCinema(cinemaId);
+            if (readMovieDto != null) return Ok(readMovieDto);
+            return NotFound();
+        }
+
         [HttpPut("{id}")]
         public IActionResult PutMovie(int id, [FromBody] UpdateMovieDto updateMovieDto)
         {
@@ -59,7 +67,11 @@ namespace TicketSeller.API.Controllers
         public IActionResult DeleteMovie(int id)
         {
             Result result = _movieService.DeleteMovie(id);
-            if (result.IsSuccess) return NoContent();
+            if(result != null)
+            {
+                if (result.IsFailed) return Conflict(result.Errors);
+                if (result.IsSuccess) return NoContent();
+            }
             return NotFound();
         }
     }

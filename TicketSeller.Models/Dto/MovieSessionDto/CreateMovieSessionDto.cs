@@ -12,20 +12,15 @@ namespace TicketSeller.Models.Dto.MovieSessionDto
     public class CreateMovieSessionDto
     {
         [Required]
-        public Movie Movie { get; set; }
-        [Required]
-        [ForeignKey("Movie")]
         public int MovieId { get; set; }
         [Required]
-        public Cinema Cinema { get; set; }
-        [Required]
-        [ForeignKey("Cinema")]
         public int CinemaId { get; set; }
+        [Required]
+        public int MovieRoomNumber { get; set; }
         [Required]
         public DateTime StartDateTime { get; set; }
         [Required]
         public DateTime EndDateTime { get; set; }
-        [Required]
-        public int MovieRoomNumber { get; set; }
+        
     }
 }

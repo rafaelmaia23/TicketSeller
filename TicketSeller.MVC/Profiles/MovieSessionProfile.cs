@@ -11,6 +11,9 @@ namespace TicketSeller.API.Profiles
         {
 
             CreateMap<MovieSession, ReadMovieSessionDto>();
+            //.ForPath(movieSession => movieSession.Cinema.MovieSessions, opt => opt
+            //.MapFrom(movieSession => movieSession.Cinema.MovieSessions            
+            //.Select(c => new { c.Id })));
             CreateMap<CreateMovieSessionDto, MovieSession>();
             CreateMap<UpdateMovieSessionDto, MovieSession>();
         }

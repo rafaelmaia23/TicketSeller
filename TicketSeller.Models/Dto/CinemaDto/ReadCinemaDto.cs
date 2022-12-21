@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TicketSeller.Models.Models;
+using System.Text.Json.Serialization;
+using TicketSeller.Models.Dto.AdressDto;
 
 namespace TicketSeller.Models.Dto.CinemaDto
 {
@@ -13,16 +15,12 @@ namespace TicketSeller.Models.Dto.CinemaDto
     {
 
         [Key]
-        [Required]
         public int Id { get; set; }
-        [Required]
-        [StringLength(60)]
         public string Name { get; set; }
         [ForeignKey("Adress")]
-        [Required]
         public int AdressId { get; set; }
-        [Required]
-        public Adress Adress { get; set; }
-        public List<MovieSession> Sessions { get; set; }
+        public ReadAdressDto Adress { get; set; }
+        [JsonIgnore]
+        public ICollection<object> MovieSessions { get; set; }
     }
 }

@@ -15,7 +15,7 @@ namespace TicketSeller.Services.Services
         public CinemaService(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
-            _mapper = mapper;
+            _mapper = mapper;            
         }
         public ReadCinemaDto AddCinema(CreateCinemaDto createCinemaDto)
         {
@@ -60,7 +60,8 @@ namespace TicketSeller.Services.Services
         public Result DeleteCinema(int id)
         {
             Cinema cinema = _unitOfWork.Cinema.GetById(x => x.Id == id);
-            if (cinema == null) return Result.Fail("Cinema Not Found");
+            if (cinema == null) return null;
+            if(cinema.MovieSessions.Count != 0) return Result.Fail("Cannot delete a Cinema that have MovieSessions");
             _unitOfWork.Adress.Remove(cinema.Adress);
             _unitOfWork.Cinema.Remove(cinema);
             _unitOfWork.Save();

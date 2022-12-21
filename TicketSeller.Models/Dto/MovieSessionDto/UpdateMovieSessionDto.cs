@@ -16,10 +16,10 @@ namespace TicketSeller.Models.Dto.MovieSessionDto
         [Required]
         public int CinemaId { get; set; }
         [Required]
+        public int MovieRoomNumber { get; set; }
+        [Required]
         public DateTime StartDateTime { get; set; }
         [Required]
-        public DateTime EndDateTime { get; set; }
-        [Required]
-        public int MovieRoomNumber { get; set; }
+        public DateTime EndDateTime { get; set; }        
     }
 }

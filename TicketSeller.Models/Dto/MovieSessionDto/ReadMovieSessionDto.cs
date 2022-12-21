@@ -6,30 +6,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TicketSeller.Models.Models;
+using System.Text.Json.Serialization;
+using TicketSeller.Models.Dto.MovieDto;
+using TicketSeller.Models.Dto.CinemaDto;
 
 namespace TicketSeller.Models.Dto.MovieSessionDto
 {
     public class ReadMovieSessionDto
     {
         [Key]
-        [Required]
         public int Id { get; set; }
-        [Required]
-        public Movie Movie { get; set; }
-        [Required]
         [ForeignKey("Movie")]
         public int MovieId { get; set; }
-        [Required]
-        public Cinema Cinema { get; set; }
-        [Required]
+        public ReadMovieDto Movie { get; set; }
         [ForeignKey("Cinema")]
         public int CinemaId { get; set; }
-        [Required]
-        public DateTime StartDateTime { get; set; }
-        [Required]
-        public DateTime EndDateTime { get; set; }
-        [Required]
+        public ReadCinemaDto Cinema { get; set; }
         public int MovieRoomNumber { get; set; }
-        public Seat[,] Seats { get; set; } = new Seat[15, 10];
+        [JsonIgnore]
+        public virtual ICollection<Seat> Seats { get; set; }
+        public DateTime StartDateTime { get; set; }
+        public DateTime EndDateTime { get; set; }
+        
     }
 }

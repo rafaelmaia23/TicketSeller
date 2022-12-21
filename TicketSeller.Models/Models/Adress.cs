@@ -31,8 +31,6 @@ namespace TicketSeller.Models.Models
         [Required]
         [StringLength(80)]
         public string Contry { get; set; }
-        [Required]
-        [JsonIgnore]
         public virtual Cinema Cinema { get; set; }
     }
 }

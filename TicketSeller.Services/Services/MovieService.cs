@@ -58,14 +58,42 @@ namespace TicketSeller.Services.Services
         {
             List<MovieGenre> movieGenres = _unitOfWork.MovieGenre.GetAll().Where(x => x.GenreId == genreId).ToList();
             if (movieGenres.Count == 0) return null;
-            List<Movie> movies = new List<Movie>();
+            var movies = new List<Movie>();
             foreach (MovieGenre movieGenre in movieGenres)
             {
                 movies.Add(movieGenre.Movie);
             }
             IEnumerable<ReadMovieDto> readMoviesDto = _mapper.Map<List<ReadMovieDto>>(movies);
             return readMoviesDto;
-        }        
+        }
+
+        public IEnumerable<ReadMovieDto> GetMoviesByCinema(int cinemaId)
+        {
+            List<MovieSession> movieSessions = _unitOfWork.MovieSession.GetAll().Where(x => x.CinemaId == cinemaId).ToList();
+            if (movieSessions.Count == 0) return null;
+            var movies = new List<Movie>();
+            foreach(MovieSession movieSession in movieSessions)
+            {
+                if(movies.Count == 0)
+                {
+                    movies.Add(movieSession.Movie);
+                }
+                else
+                {
+                    bool isInList = false;
+                    for(int i = 0; i< movies.Count; i++)
+                    {
+                        if (movieSession.Movie.Id == movies[i].Id)
+                        {
+                            isInList = true;
+                        }
+                    }
+                    if(isInList == false) movies.Add(movieSession.Movie);                    
+                }
+            }
+            IEnumerable<ReadMovieDto> readMovieDtos = _mapper.Map<List<ReadMovieDto>>(movies);
+            return readMovieDtos;
+        }
 
         public Result PutMovie(int id, UpdateMovieDto updateMovieDto)
         {
@@ -94,10 +122,12 @@ namespace TicketSeller.Services.Services
         public Result DeleteMovie(int id)
         {
             Movie movie = _unitOfWork.Movie.GetById(x => x.Id == id);
-            if(movie == null) return Result.Fail("Movie Not Found");
+            if (movie == null) return null;
+            if (movie.MovieSessions.Count != 0) return Result.Fail("Cannot delete a Movie that have MovieSessions");
             _unitOfWork.Movie.Remove(movie);
             _unitOfWork.Save();
             return Result.Ok();
         }
+       
     }
 }

@@ -52,7 +52,11 @@ namespace TicketSeller.API.Controllers
         public IActionResult DeleteCinema(int id)
         {
             Result result = _cinemaService.DeleteCinema(id);
-            if (result.IsSuccess) return NoContent();
+            if (result != null)
+            {
+                if (result.IsFailed) return Conflict(result.Errors);
+                if (result.IsSuccess) return NoContent();
+            }
             return NotFound();
         }
     }

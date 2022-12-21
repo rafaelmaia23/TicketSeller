@@ -6,7 +6,7 @@ using TicketSeller.Services.Services.IServices;
 namespace TicketSeller.API.Controllers
 {
     [ApiController]
-    [Route("controller")]
+    [Route("[controller]")]
     public class MovieSessionController : Controller
     {
         private readonly IMovieSessionService _movieSessionService;
@@ -43,6 +43,22 @@ namespace TicketSeller.API.Controllers
         public IActionResult GetMovieSessionsByCinema(int cinemaId)
         {
             IEnumerable<ReadMovieSessionDto> readMovieSessionDtos = _movieSessionService.GetMovieSessionsByCinema(cinemaId);
+            if (readMovieSessionDtos != null) return Ok(readMovieSessionDtos);
+            return NotFound();
+        }
+
+        [HttpGet("Movie/{movieId}")]
+        public IActionResult GetMovieSessionsByMovie(int movieId)
+        {
+            IEnumerable<ReadMovieSessionDto> readMovieSessionDtos = _movieSessionService.GetMovieSessionsByMovie(movieId);
+            if (readMovieSessionDtos != null) return Ok(readMovieSessionDtos);
+            return NotFound();
+        }
+
+        [HttpGet("Genre/{genreId}")]
+        public IActionResult GetMovieSessionsByGenre(int genreId)
+        {
+            IEnumerable<ReadMovieSessionDto> readMovieSessionDtos = _movieSessionService.GetMovieSessionsByGenre(genreId);
             if (readMovieSessionDtos != null) return Ok(readMovieSessionDtos);
             return NotFound();
         }

@@ -9,36 +9,19 @@ namespace TicketSeller.Models.Models
         [Key]
         [Required]
         public int Id { get; set; }
-        [Required]
-        public virtual Movie Movie { get; set; }
-        [Required]
+        [Required]        
         [ForeignKey("Movie")]
         public int MovieId { get; set; }
-        [Required]
-        public virtual Cinema Cinema { get; set; }
+        public virtual Movie Movie { get; set; }
         [Required]
         [ForeignKey("Cinema")]
         public int CinemaId { get; set; }
-        [Required]
-        public DateTime StartDateTime { get; set; }
-        [Required]
-        public DateTime EndDateTime { get; set; }
+        public virtual Cinema Cinema { get; set; }
         [Required]
         public int MovieRoomNumber { get; set; }
-        [JsonIgnore]
         public virtual ICollection<Seat> Seats { get; set; } = new List<Seat>();
-
-        public MovieSession()
-        {
-            Seats = new List<Seat>();
-
-            for(char row = 'A'; row <= 'O'; row++)
-            {
-                for(int column = 1; column <= 10; column++)
-                {
-                    Seats.Add(new Seat(row, column, true, this.Id));
-                }
-            }
-        }
+        [Required]
+        public DateTime StartDateTime { get; set; }
+        public DateTime EndDateTime { get; set; }
     }
 }

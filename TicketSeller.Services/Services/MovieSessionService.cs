@@ -28,6 +28,15 @@ namespace TicketSeller.Services.Services
             MovieSession movieSession = _mapper.Map<MovieSession>(createMovieSessionDto);
             _unitOfWork.MovieSession.Add(movieSession);
             _unitOfWork.Save();
+            //create the seats in the MovieSession
+            for (char row = 'A'; row <= 'O'; row++)
+            {
+                for (int column = 1; column <= 10; column++)
+                {
+                    movieSession.Seats.Add(new Seat(row, column, true, movieSession.Id));
+                }
+            }            
+            _unitOfWork.Save();
             return _mapper.Map<ReadMovieSessionDto>(movieSession);
         }       
 
@@ -52,7 +61,32 @@ namespace TicketSeller.Services.Services
         public IEnumerable<ReadMovieSessionDto> GetMovieSessionsByCinema(int cinemaId)
         {
             Cinema cinema = _unitOfWork.Cinema.GetById(x => x.Id == cinemaId);
+            if (cinema == null) return null;
             IEnumerable<MovieSession> movieSessions = cinema.MovieSessions.ToList();
+            IEnumerable<ReadMovieSessionDto> readMovieSessionDtos = _mapper.Map<List<ReadMovieSessionDto>>(movieSessions);
+            return readMovieSessionDtos;
+        }
+
+        public IEnumerable<ReadMovieSessionDto> GetMovieSessionsByMovie(int movieId)
+        {
+            Movie movie = _unitOfWork.Movie.GetById(x => x.Id == movieId);
+            if (movie == null) return null;
+            IEnumerable<MovieSession> movieSessions = movie.MovieSessions.ToList();
+            IEnumerable<ReadMovieSessionDto> readMovieSessionDtos = _mapper.Map<List<ReadMovieSessionDto>>(movieSessions);
+            return readMovieSessionDtos;
+        }
+        public IEnumerable<ReadMovieSessionDto> GetMovieSessionsByGenre(int genreId)
+        {
+            Genre genre = _unitOfWork.Genre.GetById(x => x.Id == genreId);
+            if (genre == null) return null;
+            List<MovieSession> movieSessions = new List<MovieSession>();
+            foreach(MovieGenre movieGenre in genre.MovieGenres)
+            {
+                foreach(MovieSession movieSession in movieGenre.Movie.MovieSessions)
+                {
+                    movieSessions.Add(movieSession);
+                }
+            }
             IEnumerable<ReadMovieSessionDto> readMovieSessionDtos = _mapper.Map<List<ReadMovieSessionDto>>(movieSessions);
             return readMovieSessionDtos;
         }
