@@ -2,15 +2,14 @@
 using TicketSeller.Models.Dto.AdressDto;
 using TicketSeller.Models.Models;
 
-namespace TicketSeller.API.Profiles
+namespace TicketSeller.API.Profiles;
+
+public class AdressProfile : Profile
 {
-    public class AdressProfile : Profile
+    public AdressProfile()
     {
-        public AdressProfile()
-        {
-            CreateMap<Adress, ReadAdressDto>();
-            CreateMap<CreateAdressDto, Adress>();
-            CreateMap<UpdateAdressDto, Adress>();
-        }
+        CreateMap<Adress, ReadAdressDto>();
+        CreateMap<CreateAdressDto, Adress>();
+        CreateMap<UpdateAdressDto, Adress>();
     }
 }

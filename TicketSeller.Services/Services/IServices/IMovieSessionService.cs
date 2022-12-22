@@ -1,17 +1,16 @@
 ﻿using FluentResults;
 using TicketSeller.Models.Dto.MovieSessionDto;
 
-namespace TicketSeller.Services.Services.IServices
+namespace TicketSeller.Services.Services.IServices;
+
+public interface IMovieSessionService
 {
-    public interface IMovieSessionService
-    {
-        ReadMovieSessionDto AddMovieSessions(CreateMovieSessionDto createMovieSessionDto);
-        IEnumerable<ReadMovieSessionDto> GetMovieSessions();
-        ReadMovieSessionDto GetMovieSessionById(int id);
-        IEnumerable<ReadMovieSessionDto> GetMovieSessionsByCinema(int cinemaId);
-        IEnumerable<ReadMovieSessionDto> GetMovieSessionsByMovie(int movieId);
-        IEnumerable<ReadMovieSessionDto> GetMovieSessionsByGenre(int genreId);
-        Result PutMovieSession(int id, UpdateMovieSessionDto updateMovieSessionDto);
-        Result DeleteMovieSession(int id);        
-    }
+    ReadMovieSessionDto AddMovieSessions(CreateMovieSessionDto createMovieSessionDto);
+    IEnumerable<ReadMovieSessionDto> GetMovieSessions();
+    ReadMovieSessionDto GetMovieSessionById(int id);
+    IEnumerable<ReadMovieSessionDto> GetMovieSessionsByCinema(int cinemaId);
+    IEnumerable<ReadMovieSessionDto> GetMovieSessionsByMovie(int movieId);
+    IEnumerable<ReadMovieSessionDto> GetMovieSessionsByGenre(int genreId);
+    Result PutMovieSession(int id, UpdateMovieSessionDto updateMovieSessionDto);
+    Result DeleteMovieSession(int id);        
 }

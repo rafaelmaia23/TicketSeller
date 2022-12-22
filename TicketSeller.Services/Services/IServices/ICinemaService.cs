@@ -1,14 +1,14 @@
 ﻿using FluentResults;
 using TicketSeller.Models.Dto.CinemaDto;
 
-namespace TicketSeller.Services.Services.IServices
+namespace TicketSeller.Services.Services.IServices;
+
+public interface ICinemaService
 {
-    public interface ICinemaService
-    {
-        ReadCinemaDto AddCinema(CreateCinemaDto createCinemaDto);
-        IEnumerable<ReadCinemaDto> GetCinemas();
-        ReadCinemaDto GetCinemaById(int id);
-        Result PutCinema(int id, UpdateCinemaDto updateCinemaDto);
-        Result DeleteCinema(int id);
-    }
+    ReadCinemaDto AddCinema(CreateCinemaDto createCinemaDto);
+    IEnumerable<ReadCinemaDto> GetCinemas();
+    ReadCinemaDto GetCinemaById(int id);
+    IEnumerable<ReadCinemaDto> GetCinemasByMovie(int movieId);
+    Result PutCinema(int id, UpdateCinemaDto updateCinemaDto);
+    Result DeleteCinema(int id);        
 }

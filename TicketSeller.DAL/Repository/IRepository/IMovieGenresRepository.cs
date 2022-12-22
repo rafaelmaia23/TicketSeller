@@ -1,9 +1,8 @@
 ﻿using TicketSeller.Models.Models;
 
-namespace TicketSeller.DAL.Repository.IRepository
+namespace TicketSeller.DAL.Repository.IRepository;
+
+public interface IMovieGenresRepository : IRepository<MovieGenre>
 {
-    public interface IMovieGenresRepository : IRepository<MovieGenre>
-    {
-        void Update(MovieGenre movieGenres);
-    }
+    void Update(MovieGenre movieGenres);
 }

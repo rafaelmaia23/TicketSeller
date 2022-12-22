@@ -1,10 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace TicketSeller.Models.Dto.GenreDto
+namespace TicketSeller.Models.Dto.GenreDto;
+
+public class CreateGenreDto
 {
-    public class CreateGenreDto
-    {
-        [Required]
-        public string Name { get; set; }
-    }
+    [Required]
+    public string Name { get; set; }
 }

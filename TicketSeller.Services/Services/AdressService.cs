@@ -5,60 +5,59 @@ using TicketSeller.Models.Dto.AdressDto;
 using TicketSeller.Models.Models;
 using TicketSeller.Services.Services.IServices;
 
-namespace TicketSeller.Services.Services
+namespace TicketSeller.Services.Services;
+
+public class AdressService : IAdressService
 {
-    public class AdressService : IAdressService
+    private readonly IUnitOfWork _unitOfWork;
+    private readonly IMapper _mapper;
+
+    public AdressService(IUnitOfWork unitOfWork, IMapper mapper)
     {
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly IMapper _mapper;
+        _unitOfWork = unitOfWork;
+        _mapper = mapper;
+    }
 
-        public AdressService(IUnitOfWork unitOfWork, IMapper mapper)
+    public ReadAdressDto AddAdress(CreateAdressDto createAdressDto)
+    {
+        Adress adress = _mapper.Map<Adress>(createAdressDto);
+        _unitOfWork.Adress.Add(adress);
+        _unitOfWork.Save();
+        return _mapper.Map<ReadAdressDto>(adress);
+    }
+    public IEnumerable<ReadAdressDto> GetAdresses()
+    {
+        IEnumerable<Adress> adresses = _unitOfWork.Adress.GetAll();
+        IEnumerable<ReadAdressDto> readAdressDtos = _mapper.Map<List<ReadAdressDto>>(adresses);
+        return readAdressDtos;
+    }
+    public ReadAdressDto GetAdressById(int id)
+    {
+        Adress adress = _unitOfWork.Adress.GetById(x => x.Id == id);
+        if (adress != null)
         {
-            _unitOfWork = unitOfWork;
-            _mapper = mapper;
+            ReadAdressDto readAdressDto = _mapper.Map<ReadAdressDto>(adress);
+            return readAdressDto;
         }
+        return null;
+    }
 
-        public ReadAdressDto AddAdress(CreateAdressDto createAdressDto)
-        {
-            Adress adress = _mapper.Map<Adress>(createAdressDto);
-            _unitOfWork.Adress.Add(adress);
-            _unitOfWork.Save();
-            return _mapper.Map<ReadAdressDto>(adress);
-        }
-        public IEnumerable<ReadAdressDto> GetAdresses()
-        {
-            IEnumerable<Adress> adresses = _unitOfWork.Adress.GetAll();
-            IEnumerable<ReadAdressDto> readAdressDtos = _mapper.Map<List<ReadAdressDto>>(adresses);
-            return readAdressDtos;
-        }
-        public ReadAdressDto GetAdressById(int id)
-        {
-            Adress adress = _unitOfWork.Adress.GetById(x => x.Id == id);
-            if (adress != null)
-            {
-                ReadAdressDto readAdressDto = _mapper.Map<ReadAdressDto>(adress);
-                return readAdressDto;
-            }
-            return null;
-        }
+    public Result PutAdress(int id, UpdateAdressDto updadeAdressDto)
+    {
+        Adress adress = _unitOfWork.Adress.GetById(x => x.Id == id);
+        if (adress == null) return Result.Fail("Adress Not Found");
+        _mapper.Map(updadeAdressDto, adress);
+        _unitOfWork.Save();
+        return Result.Ok();
+    }
 
-        public Result PutAdress(int id, UpdateAdressDto updadeAdressDto)
-        {
-            Adress adress = _unitOfWork.Adress.GetById(x => x.Id == id);
-            if (adress == null) return Result.Fail("Adress Not Found");
-            _mapper.Map(updadeAdressDto, adress);
-            _unitOfWork.Save();
-            return Result.Ok();
-        }
-
-        public Result DeleteAdress(int id)
-        {
-            Adress adress = _unitOfWork.Adress.GetById(x => x.Id == id);
-            if (adress == null) return null;
-            if (adress.Cinema != null) return Result.Fail("Cannot delete a Adress that contain a Cinema");
-            _unitOfWork.Adress.Remove(adress);
-            _unitOfWork.Save();
-            return Result.Ok();
-        }
+    public Result DeleteAdress(int id)
+    {
+        Adress adress = _unitOfWork.Adress.GetById(x => x.Id == id);
+        if (adress == null) return null;
+        if (adress.Cinema != null) return Result.Fail("Cannot delete a Adress that contain a Cinema");
+        _unitOfWork.Adress.Remove(adress);
+        _unitOfWork.Save();
+        return Result.Ok();
     }
 }
