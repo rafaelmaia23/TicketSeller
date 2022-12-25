@@ -69,7 +69,7 @@ public class MovieController : ControllerBase
         Result result = _movieService.DeleteMovie(id);
         if(result != null)
         {
-            if (result.IsFailed) return Conflict(result.Errors);
+            if (result.IsFailed) return Conflict(result.Reasons);
             if (result.IsSuccess) return NoContent();
         }
         return NotFound();

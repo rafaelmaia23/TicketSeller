@@ -53,7 +53,7 @@ public class GenreController : ControllerBase
         Result result = _genreService.DeleteGenre(id);
         if (result != null)
         {
-            if (result.IsFailed) return Conflict(result.Errors);
+            if (result.IsFailed) return Conflict(result.Reasons);
             if (result.IsSuccess) return NoContent();
         }
         return NotFound();

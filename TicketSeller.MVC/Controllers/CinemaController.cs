@@ -20,7 +20,7 @@ public class CinemaController : ControllerBase
     public IActionResult AddCinema([FromBody] CreateCinemaDto createCinemaDto)
     {
         ReadCinemaDto readCinemaDto = _cinemaService.AddCinema(createCinemaDto);
-        if(readCinemaDto == null) return Conflict();
+        if(readCinemaDto == null) return Conflict("Cannot add a Cinema with an Adress already in use by another Cinema, please use an adress available");
         return CreatedAtAction(nameof(GetCinemaById), new { id = readCinemaDto.Id }, readCinemaDto);
     }
 
@@ -62,7 +62,7 @@ public class CinemaController : ControllerBase
         Result result = _cinemaService.DeleteCinema(id);
         if (result != null)
         {
-            if (result.IsFailed) return Conflict(result.Errors);
+            if (result.IsFailed) return Conflict(result.Reasons);
             if (result.IsSuccess) return NoContent();
         }
         return NotFound();

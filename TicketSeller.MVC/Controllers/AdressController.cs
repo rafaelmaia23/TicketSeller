@@ -53,7 +53,7 @@ public class AdressController : ControllerBase
         Result result = _adressService.DeleteAdress(id);
         if (result != null)
         {
-            if (result.IsFailed) return Conflict(result.Errors);
+            if (result.IsFailed) return Conflict(result.Reasons);
             if (result.IsSuccess) return NoContent();
         }
         return NotFound();
