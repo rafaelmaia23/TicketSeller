@@ -1,6 +1,6 @@
 ﻿using FluentResults;
 using Microsoft.AspNetCore.Mvc;
-using TicketSeller.Models.Dto.MovieDto;
+using TicketSeller.Models.Dtos.MovieDto;
 using TicketSeller.Services.Services.IServices;
 
 namespace TicketSeller.API.Controllers;

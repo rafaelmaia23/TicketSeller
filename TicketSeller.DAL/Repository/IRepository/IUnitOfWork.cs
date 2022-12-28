@@ -8,5 +8,6 @@ public interface IUnitOfWork
     IAdressRepository Adress { get; }
     ICinemaRepository Cinema { get; }
     IMovieSessionRepository MovieSession { get; }
+    IUserRepository User { get; }
     void Save();
 }

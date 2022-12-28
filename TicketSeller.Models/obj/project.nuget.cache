@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "19XMBkzxeSX0msQSiYkByyN0XlJwDu7KUvDguktJZER8yc6qttfAieJxAv3iRNciwFlc5PEIaLFwqYGbzwQigw==",
+  "dgSpecHash": "FcenmDZ1ZGVpJLQS+lId2OMY4SYCkYAa/uKm2JUvFJupTLzfaU116DaQc2q+/uwPw7xQeQL8HRKSLWVQHKx/Tg==",
   "success": true,
   "projectFilePath": "D:\\OneDrive\\Estudo\\projetos\\C#\\TicketSeller\\TicketSeller.Models\\TicketSeller.Models.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\rafa_\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.0\\microsoft.entityframeworkcore.7.0.0.nupkg.sha512",
-    "C:\\Users\\rafa_\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.0\\microsoft.entityframeworkcore.abstractions.7.0.0.nupkg.sha512",
-    "C:\\Users\\rafa_\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\7.0.0\\microsoft.entityframeworkcore.analyzers.7.0.0.nupkg.sha512",
+    "C:\\Users\\rafa_\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.1\\microsoft.entityframeworkcore.7.0.1.nupkg.sha512",
+    "C:\\Users\\rafa_\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.1\\microsoft.entityframeworkcore.abstractions.7.0.1.nupkg.sha512",
+    "C:\\Users\\rafa_\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\7.0.1\\microsoft.entityframeworkcore.analyzers.7.0.1.nupkg.sha512",
     "C:\\Users\\rafa_\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\7.0.0\\microsoft.extensions.caching.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\rafa_\\.nuget\\packages\\microsoft.extensions.caching.memory\\7.0.0\\microsoft.extensions.caching.memory.7.0.0.nupkg.sha512",
     "C:\\Users\\rafa_\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\7.0.0\\microsoft.extensions.dependencyinjection.7.0.0.nupkg.sha512",

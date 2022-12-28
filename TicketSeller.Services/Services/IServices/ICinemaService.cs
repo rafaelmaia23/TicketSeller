@@ -1,5 +1,5 @@
 ﻿using FluentResults;
-using TicketSeller.Models.Dto.CinemaDto;
+using TicketSeller.Models.Dtos.CinemaDto;
 
 namespace TicketSeller.Services.Services.IServices;
 

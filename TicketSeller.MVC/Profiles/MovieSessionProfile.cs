@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using TicketSeller.Models.Dto.MovieSessionDto;
+using TicketSeller.Models.Dtos.MovieSessionDto;
 using TicketSeller.Models.Models;
 
 namespace TicketSeller.API.Profiles;

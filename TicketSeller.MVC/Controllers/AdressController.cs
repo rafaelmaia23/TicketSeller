@@ -1,6 +1,6 @@
 ﻿using FluentResults;
 using Microsoft.AspNetCore.Mvc;
-using TicketSeller.Models.Dto.AdressDto;
+using TicketSeller.Models.Dtos.AdressDto;
 using TicketSeller.Services.Services.IServices;
 
 namespace TicketSeller.API.Controllers;

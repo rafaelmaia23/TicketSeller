@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using FluentResults;
 using TicketSeller.DAL.Repository.IRepository;
-using TicketSeller.Models.Dto.AdressDto;
+using TicketSeller.Models.Dtos.AdressDto;
 using TicketSeller.Models.Models;
 using TicketSeller.Services.Services.IServices;
 

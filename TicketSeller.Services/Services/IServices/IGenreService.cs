@@ -1,5 +1,5 @@
 ﻿using FluentResults;
-using TicketSeller.Models.Dto.GenreDto;
+using TicketSeller.Models.Dtos.GenreDto;
 
 namespace TicketSeller.Services.Services.IServices;
 

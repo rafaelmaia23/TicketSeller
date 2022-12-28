@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using TicketSeller.Models.Dto.AdressDto;
+using TicketSeller.Models.Dtos.AdressDto;
 using TicketSeller.Models.Models;
 
 namespace TicketSeller.API.Profiles;

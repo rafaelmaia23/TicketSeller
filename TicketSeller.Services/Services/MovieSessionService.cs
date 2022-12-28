@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using FluentResults;
 using TicketSeller.DAL.Repository.IRepository;
-using TicketSeller.Models.Dto.MovieSessionDto;
+using TicketSeller.Models.Dtos.MovieSessionDto;
 using TicketSeller.Models.Models;
 using TicketSeller.Services.Services.IServices;
 
@@ -74,7 +74,7 @@ public class MovieSessionService : IMovieSessionService
     {
         Genre genre = _unitOfWork.Genre.GetById(x => x.Id == genreId);
         if (genre == null) return null;
-        List<MovieSession> movieSessions = new List<MovieSession>();
+        List<MovieSession> movieSessions = new();
         foreach(MovieGenre movieGenre in genre.MovieGenres)
         {
             foreach(MovieSession movieSession in movieGenre.Movie.MovieSessions)

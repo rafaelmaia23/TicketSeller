@@ -15,6 +15,7 @@ public class UnitOfWork : IUnitOfWork
         Adress = new AdressRepository(_db);
         Cinema = new CinemaRepository(_db);
         MovieSession = new MovieSessionRepository(_db);
+        User = new UserRepository(_db);
     }
     public IMovieRepository Movie { get; private set; }
     public IGenreRepository Genre { get; private set; }
@@ -22,6 +23,7 @@ public class UnitOfWork : IUnitOfWork
     public IAdressRepository Adress { get; private set; }
     public ICinemaRepository Cinema { get; private set; }
     public IMovieSessionRepository MovieSession { get; private set; }
+    public IUserRepository User { get; private set; }
 
     public void Save()
     {
