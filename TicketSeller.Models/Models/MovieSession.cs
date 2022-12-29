@@ -11,11 +11,11 @@ public class MovieSession
     [Required]        
     [ForeignKey("Movie")]
     public int MovieId { get; set; }
-    public virtual Movie Movie { get; set; }
+    public virtual Movie Movie { get; set; } = null!;
     [Required]
     [ForeignKey("Cinema")]
     public int CinemaId { get; set; }
-    public virtual Cinema Cinema { get; set; }
+    public virtual Cinema Cinema { get; set; } = null!;
     [Required]
     public int MovieRoomNumber { get; set; }
     public virtual ICollection<Seat> Seats { get; set; } = new List<Seat>();

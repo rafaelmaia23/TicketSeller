@@ -8,6 +8,6 @@ public class Genre
     [Required]
     public int Id { get; set; }
     [Required]
-    public string Name { get; set; }
-    public virtual ICollection<MovieGenre> MovieGenres { get; set; }
+    public string Name { get; set; } = null!;
+    public virtual ICollection<MovieGenre>? MovieGenres { get; set; }
 }

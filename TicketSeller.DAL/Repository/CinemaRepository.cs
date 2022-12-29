@@ -14,7 +14,7 @@ public class CinemaRepository : Repository<Cinema>, ICinemaRepository
     {
         _db = db;
     }
-    public override Cinema GetById(Expression<Func<Cinema, bool>> expression)
+    public override Cinema? GetById(Expression<Func<Cinema, bool>> expression)
     {
         return _db.Cinemas
             .Include(a => a.Adress)

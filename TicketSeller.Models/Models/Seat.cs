@@ -15,7 +15,7 @@ public class Seat
     [ForeignKey("MovieSession")]
     public int MovieSessionId { get; set; }
     [JsonIgnore]
-    public virtual MovieSession MovieSession { get; set; }
+    public virtual MovieSession MovieSession { get; set; } = null!;
 
     public Seat(char row, int column, bool isAvailable, int movieSessionId)
     {

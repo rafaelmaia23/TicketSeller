@@ -9,8 +9,8 @@ public class MovieGenre
     public int Id { get; set; }
     [Required]
     public int MovieId { get; set; }
-    public virtual Movie Movie { get; set; }
+    public virtual Movie Movie { get; set; } = null!;
     [Required]
     public int GenreId { get; set; }
-    public virtual Genre Genre { get; set; }
+    public virtual Genre Genre { get; set; } = null!;
 }

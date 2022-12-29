@@ -16,8 +16,11 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseLazyLoadingPro
     builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddDbContext<UserDbContext>(options => options.UseSqlServer(
     builder.Configuration.GetConnectionString("UserConnection")));
-builder.Services.AddIdentity<IdentityUser<int>, IdentityRole<int>>()
-    .AddEntityFrameworkStores<UserDbContext>();
+builder.Services.AddIdentity<IdentityUser<int>, IdentityRole<int>>(
+    opt => opt.SignIn.RequireConfirmedEmail = true
+    )
+    .AddEntityFrameworkStores<UserDbContext>()
+    .AddDefaultTokenProviders();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IMovieService, MovieService>();
 builder.Services.AddScoped<IGenreService, GenreService>();
@@ -27,6 +30,7 @@ builder.Services.AddScoped<IMovieSessionService, MovieSessionService>();
 builder.Services.AddScoped<IRegisterService, RegisterService>();
 builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<ILoginTokenService, LoginTokenService>();
+builder.Services.AddScoped<ILogoutService, LogoutService>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

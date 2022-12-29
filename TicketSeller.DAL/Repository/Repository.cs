@@ -19,7 +19,7 @@ public class Repository<T> : IRepository<T> where T : class
     public void Add(T entity)
     {
        //dbSet.Add(entity);
-       dbSet.AddAsync(entity);
+       dbSet.Add(entity);
     }
 
     public IEnumerable<T> Find(Expression<Func<T, bool>> expression)

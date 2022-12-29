@@ -21,6 +21,6 @@ public class LoginController : ControllerBase
     {
         Result result = _loginService.LoginUser(loginRequest);
         if (result.IsFailed) return Unauthorized(result.Reasons);
-        return Ok(result.WithSuccess(result.Successes.FirstOrDefault()));
+        return Ok(result.Successes.FirstOrDefault());
     }
 }

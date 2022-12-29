@@ -17,7 +17,7 @@ public class CinemaService : ICinemaService
         _unitOfWork = unitOfWork;
         _mapper = mapper;            
     }
-    public ReadCinemaDto AddCinema(CreateCinemaDto createCinemaDto)
+    public ReadCinemaDto? AddCinema(CreateCinemaDto createCinemaDto)
     {
         Adress adress = _unitOfWork.Adress.GetById(x => x.Id == createCinemaDto.AdressId);
         if(adress.Cinema != null)
@@ -37,7 +37,7 @@ public class CinemaService : ICinemaService
         return readCinemaDtos;
     }
 
-    public ReadCinemaDto GetCinemaById(int id)
+    public ReadCinemaDto? GetCinemaById(int id)
     {
         Cinema cinema = _unitOfWork.Cinema.GetById(x => x.Id == id);
         if(cinema != null)
@@ -48,7 +48,7 @@ public class CinemaService : ICinemaService
         return null;
     }
 
-    public IEnumerable<ReadCinemaDto> GetCinemasByMovie(int movieId)
+    public IEnumerable<ReadCinemaDto>? GetCinemasByMovie(int movieId)
     {
         List<MovieSession> movieSessions = _unitOfWork.MovieSession.GetAll().Where(x => x.MovieId == movieId).ToList();
         if (movieSessions == null) return null;
@@ -69,7 +69,7 @@ public class CinemaService : ICinemaService
         return Result.Ok();
     }
 
-    public Result DeleteCinema(int id)
+    public Result? DeleteCinema(int id)
     {
         Cinema cinema = _unitOfWork.Cinema.GetById(x => x.Id == id);
         if (cinema == null) return null;

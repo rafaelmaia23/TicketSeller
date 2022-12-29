@@ -43,7 +43,7 @@ public class MovieService : IMovieService
         IEnumerable<ReadMovieDto> readMoviesDto = _mapper.Map<List<ReadMovieDto>>(movies);
         return readMoviesDto;
     }
-    public ReadMovieDto GetMovieById(int id)
+    public ReadMovieDto? GetMovieById(int id)
     {
         Movie movie = _unitOfWork.Movie.GetById(x => x.Id == id);
         if (movie != null)
@@ -54,7 +54,7 @@ public class MovieService : IMovieService
         return null;
     }
 
-    public IEnumerable<ReadMovieDto> GetMoviesByGenre(int genreId)
+    public IEnumerable<ReadMovieDto>? GetMoviesByGenre(int genreId)
     {
         List<MovieGenre> movieGenres = _unitOfWork.MovieGenre.GetAll().Where(x => x.GenreId == genreId).ToList();
         if (movieGenres.Count == 0) return null;

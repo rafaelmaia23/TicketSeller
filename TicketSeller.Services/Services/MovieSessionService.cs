@@ -62,7 +62,7 @@ public class MovieSessionService : IMovieSessionService
         return readMovieSessionDtos;
     }
 
-    public IEnumerable<ReadMovieSessionDto> GetMovieSessionsByMovie(int movieId)
+    public IEnumerable<ReadMovieSessionDto>? GetMovieSessionsByMovie(int movieId)
     {
         Movie movie = _unitOfWork.Movie.GetById(x => x.Id == movieId);
         if (movie == null) return null;
@@ -70,7 +70,7 @@ public class MovieSessionService : IMovieSessionService
         IEnumerable<ReadMovieSessionDto> readMovieSessionDtos = _mapper.Map<List<ReadMovieSessionDto>>(movieSessions);
         return readMovieSessionDtos;
     }
-    public IEnumerable<ReadMovieSessionDto> GetMovieSessionsByGenre(int genreId)
+    public IEnumerable<ReadMovieSessionDto>? GetMovieSessionsByGenre(int genreId)
     {
         Genre genre = _unitOfWork.Genre.GetById(x => x.Id == genreId);
         if (genre == null) return null;

@@ -10,10 +10,10 @@ public class Cinema
     public int Id { get; set; }
     [Required]
     [StringLength(60)]
-    public string Name { get; set; }
+    public string Name { get; set; } = null!;
     [ForeignKey("Adress")]
     [Required]
     public int AdressId { get; set; }
-    public virtual Adress Adress { get; set; }
-    public virtual List<MovieSession> MovieSessions { get; set; }
+    public virtual Adress Adress { get; set; } = null!;
+    public virtual List<MovieSession> MovieSessions { get; set; } = new();
 }

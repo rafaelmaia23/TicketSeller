@@ -51,7 +51,7 @@ public class AdressService : IAdressService
         return Result.Ok();
     }
 
-    public Result DeleteAdress(int id)
+    public Result? DeleteAdress(int id)
     {
         Adress adress = _unitOfWork.Adress.GetById(x => x.Id == id);
         if (adress == null) return null;

@@ -8,8 +8,8 @@ namespace TicketSeller.Services.Services;
 
 public class LoginService : ILoginService
 {
-    private SignInManager<IdentityUser<int>> _signInManager;
-    private ILoginTokenService _loginTokenService;
+    private readonly SignInManager<IdentityUser<int>> _signInManager;
+    private readonly ILoginTokenService _loginTokenService;
 
     public LoginService(SignInManager<IdentityUser<int>> signInManager, ILoginTokenService loginTokenService)
     {
@@ -30,7 +30,7 @@ public class LoginService : ILoginService
                 .FirstOrDefault(user =>
                 user.NormalizedUserName == loginRequest.Username.ToUpper());
 
-            LoginToken loginToken = _loginTokenService.CreateLoginToken(identityUser);
+            LoginToken loginToken = _loginTokenService.CreateLoginToken(identityUser!);
             return Result.Ok().WithSuccess(loginToken.Value);
         }
 

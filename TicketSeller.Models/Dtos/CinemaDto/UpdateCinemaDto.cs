@@ -7,7 +7,7 @@ public class UpdateCinemaDto
 {
     [Required]
     [StringLength(60)]
-    public string Name { get; set; }
+    public string Name { get; set; } = null!;
     [ForeignKey("Adress")]
     [Required]
     public int AdressId { get; set; }
