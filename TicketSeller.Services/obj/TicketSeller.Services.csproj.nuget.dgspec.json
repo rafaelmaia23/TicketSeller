@@ -132,6 +132,10 @@
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[7.0.1, )"
+            },
+            "MimeKit": {
+              "target": "Package",
+              "version": "[3.4.3, )"
             }
           },
           "imports": [
@@ -213,6 +217,10 @@
             "FluentResults": {
               "target": "Package",
               "version": "[3.15.1, )"
+            },
+            "MailKit": {
+              "target": "Package",
+              "version": "[3.4.3, )"
             },
             "Microsoft.AspNetCore.Identity": {
               "target": "Package",

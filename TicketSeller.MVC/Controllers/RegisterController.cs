@@ -25,8 +25,8 @@ public class RegisterController : ControllerBase
         return Ok(result.Successes.FirstOrDefault());
     }
 
-    [HttpPost("/confirm")]
-    public IActionResult ConfirmUserAccount(ConfirmUserAccountRequest confirmUserAccountRequest)
+    [HttpGet("/confirm")]
+    public IActionResult ConfirmUserAccount([FromQuery] ConfirmUserAccountRequest confirmUserAccountRequest)
     {
         Result result = _registerService.ConfirmUserAccount(confirmUserAccountRequest);
         if(result.IsFailed) return StatusCode(500);

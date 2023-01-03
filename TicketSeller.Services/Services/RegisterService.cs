@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FluentResults;
 using Microsoft.AspNetCore.Identity;
+using System.Web;
 using TicketSeller.Models.Dtos.UserDto;
 using TicketSeller.Models.Models;
 using TicketSeller.Models.Requests;
@@ -12,13 +13,15 @@ public class RegisterService : IRegisterService
 {
     private readonly IMapper _mapper;
     private readonly UserManager<IdentityUser<int>> _userManager;
+    private readonly IEmailService _emailService;
 
-    public RegisterService(IMapper mapper, UserManager<IdentityUser<int>> userManager)
+    public RegisterService(IMapper mapper, UserManager<IdentityUser<int>> userManager, IEmailService emailService)
     {
         _mapper = mapper;
         _userManager = userManager;
-    } 
-    
+        _emailService = emailService;
+    }
+
     public Result RegisterUser(CreateUserDto createUserDto)
     {
         User user = _mapper.Map<User>(createUserDto);
@@ -27,6 +30,10 @@ public class RegisterService : IRegisterService
         if (identityResult.Result.Succeeded)
         {
             Task<string> code = _userManager.GenerateEmailConfirmationTokenAsync(identityUser);
+            string encodedCode = HttpUtility.UrlEncode(code.Result);
+            _emailService.SendConfirmationEmail(new[] { identityUser.Email }, "Account Confirmation Link", 
+                identityUser.Id, encodedCode);
+
             return Result.Ok().WithSuccess(code.Result);
         }
         return Result.Fail("Fail to register User");

@@ -48,6 +48,10 @@
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[7.0.1, )"
+            },
+            "MimeKit": {
+              "target": "Package",
+              "version": "[3.4.3, )"
             }
           },
           "imports": [
