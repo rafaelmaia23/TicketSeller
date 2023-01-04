@@ -1,5 +1,7 @@
 ﻿using FluentResults;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 using TicketSeller.Models.Dtos.GenreDto;
 using TicketSeller.Services.Services.IServices;
 
@@ -17,6 +19,7 @@ public class GenreController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize(Roles = "admin")]
     public IActionResult AddGenre([FromBody] CreateGenreDto createGenreDto)
     {
         ReadGenreDto readGenreDto = _genreService.AddGenre(createGenreDto);
@@ -24,6 +27,7 @@ public class GenreController : ControllerBase
     }
 
     [HttpGet]
+    [Authorize(Roles = "admin")]
     public IActionResult GetGenres()
     {
         IEnumerable<ReadGenreDto> readGenreDtos = _genreService.GetGenres();
@@ -32,6 +36,7 @@ public class GenreController : ControllerBase
     }
 
     [HttpGet("{id}")]
+    [Authorize(Roles = "admin")]
     public IActionResult GetGenreById(int id)
     {
         ReadGenreDto readGenreDto = _genreService.GetGenreById(id);
@@ -40,6 +45,7 @@ public class GenreController : ControllerBase
     }
 
     [HttpPut("{id}")]
+    [Authorize(Roles = "admin")]
     public IActionResult PutGenre(int id, [FromBody] UpdateGenreDto updateGenreDto)
     {
         Result result = _genreService.PutGenre(id, updateGenreDto);
@@ -48,6 +54,7 @@ public class GenreController : ControllerBase
     }
 
     [HttpDelete("{id}")]
+    [Authorize(Roles = "admin")]
     public IActionResult DeleteGenre(int id)
     {
         Result result = _genreService.DeleteGenre(id);

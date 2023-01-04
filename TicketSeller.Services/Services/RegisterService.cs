@@ -31,14 +31,14 @@ public class RegisterService : IRegisterService
         Task<IdentityResult> identityResult = _userManager
             .CreateAsync(identityUser, createUserDto.Password);
         identityResult.Wait();
-        IdentityResult createRoleResult = _roleManager.CreateAsync(new IdentityRole<int>("admin")).Result;
-        IdentityResult userRoleResult = _userManager.AddToRoleAsync(identityUser, "admin").Result;
+        var roleResult = _userManager.AddToRoleAsync(identityUser, "client");
+        roleResult.Wait();
         if (identityResult.Result.Succeeded)
         {
             Task<string> code = _userManager.GenerateEmailConfirmationTokenAsync(identityUser);
             string encodedCode = HttpUtility.UrlEncode(code.Result);
-            _emailService.SendConfirmationEmail(new[] { identityUser.Email }, "Account Confirmation Link", 
-                identityUser.Id, encodedCode);
+            //_emailService.SendConfirmationEmail(new[] { identityUser.Email }, "Account Confirmation Link", 
+            //    identityUser.Id, encodedCode);
 
             return Result.Ok().WithSuccess(code.Result);
         }

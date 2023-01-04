@@ -1,5 +1,7 @@
 ﻿using FluentResults;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 using TicketSeller.Models.Dtos.MovieSessionDto;
 using TicketSeller.Services.Services.IServices;
 
@@ -17,6 +19,7 @@ public class MovieSessionController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize(Roles = "admin")]
     public IActionResult AddMovieSession([FromBody] CreateMovieSessionDto createMovieSessionDto)
     {
         ReadMovieSessionDto readMovieSessionDto = _movieSessionService.AddMovieSessions(createMovieSessionDto);
@@ -24,6 +27,7 @@ public class MovieSessionController : ControllerBase
     }
 
     [HttpGet]
+    [Authorize(Roles = "admin, client")]
     public IActionResult GetMovieSessions()
     {
         IEnumerable<ReadMovieSessionDto> readMovieSessionDtos = _movieSessionService.GetMovieSessions();
@@ -32,6 +36,7 @@ public class MovieSessionController : ControllerBase
     }
 
     [HttpGet("{id}")]
+    [Authorize(Roles = "admin, client")]
     public IActionResult GetMovieSessionById(int id)
     {
         ReadMovieSessionDto readMovieSessionDto = _movieSessionService.GetMovieSessionById(id);
@@ -40,6 +45,7 @@ public class MovieSessionController : ControllerBase
     }
 
     [HttpGet("Cinema/{cinemaId}")]
+    [Authorize(Roles = "admin, client")]
     public IActionResult GetMovieSessionsByCinema(int cinemaId)
     {
         IEnumerable<ReadMovieSessionDto> readMovieSessionDtos = _movieSessionService.GetMovieSessionsByCinema(cinemaId);
@@ -48,6 +54,7 @@ public class MovieSessionController : ControllerBase
     }
 
     [HttpGet("Movie/{movieId}")]
+    [Authorize(Roles = "admin, client")]
     public IActionResult GetMovieSessionsByMovie(int movieId)
     {
         IEnumerable<ReadMovieSessionDto> readMovieSessionDtos = _movieSessionService.GetMovieSessionsByMovie(movieId);
@@ -56,6 +63,7 @@ public class MovieSessionController : ControllerBase
     }
 
     [HttpGet("Genre/{genreId}")]
+    [Authorize(Roles = "admin, client")]
     public IActionResult GetMovieSessionsByGenre(int genreId)
     {
         IEnumerable<ReadMovieSessionDto> readMovieSessionDtos = _movieSessionService.GetMovieSessionsByGenre(genreId);
@@ -64,6 +72,7 @@ public class MovieSessionController : ControllerBase
     }
 
     [HttpPut("{id}")]
+    [Authorize(Roles = "admin")]
     public IActionResult PutMovieSession(int id, [FromBody] UpdateMovieSessionDto updateMovieSessionDto)
     {
         Result result = _movieSessionService.PutMovieSession(id, updateMovieSessionDto);
@@ -72,6 +81,7 @@ public class MovieSessionController : ControllerBase
     }
 
     [HttpDelete("{id}")]
+    [Authorize(Roles = "admin")]
     public IActionResult DeleteMovieSession(int id)
     {
         Result result = _movieSessionService.DeleteMovieSession(id);

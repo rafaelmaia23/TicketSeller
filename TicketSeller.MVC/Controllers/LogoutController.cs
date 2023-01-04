@@ -1,5 +1,7 @@
 ﻿using FluentResults;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 using TicketSeller.Services.Services.IServices;
 
 namespace TicketSeller.API.Controllers;
@@ -16,6 +18,7 @@ public class LogoutController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize(Roles = "admin, client")]
     public IActionResult LogoutUser()
     {
         Result result = _logoutService.LogoutUser();
