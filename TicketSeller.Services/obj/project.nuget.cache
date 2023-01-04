@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "PwX0HIoFpMx/aqs3bJIy3K/6pO5TA2djKtMVzSbydLPyfTI6utM/NwI/Mc+7sjhalqCzUqyK56lKEslyP/uWrw==",
+  "dgSpecHash": "3xUkUDQjBlGR/KUB6N9UgbaRownXFdn0EY21Z+Pfyt0MxNuq/MjCNxkdANmSCBH4XJq0+8ejvc8U9RkKMT26yw==",
   "success": true,
   "projectFilePath": "D:\\OneDrive\\Estudo\\projetos\\C#\\TicketSeller\\TicketSeller.Services\\TicketSeller.Services.csproj",
   "expectedPackageFiles": [
@@ -39,6 +39,7 @@
     "C:\\Users\\rafa_\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\7.0.0\\microsoft.extensions.caching.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\rafa_\\.nuget\\packages\\microsoft.extensions.caching.memory\\7.0.0\\microsoft.extensions.caching.memory.7.0.0.nupkg.sha512",
     "C:\\Users\\rafa_\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\7.0.0\\microsoft.extensions.configuration.abstractions.7.0.0.nupkg.sha512",
+    "C:\\Users\\rafa_\\.nuget\\packages\\microsoft.extensions.configuration.binder\\7.0.1\\microsoft.extensions.configuration.binder.7.0.1.nupkg.sha512",
     "C:\\Users\\rafa_\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\7.0.0\\microsoft.extensions.dependencyinjection.7.0.0.nupkg.sha512",
     "C:\\Users\\rafa_\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\7.0.0\\microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\rafa_\\.nuget\\packages\\microsoft.extensions.fileproviders.abstractions\\2.2.0\\microsoft.extensions.fileproviders.abstractions.2.2.0.nupkg.sha512",

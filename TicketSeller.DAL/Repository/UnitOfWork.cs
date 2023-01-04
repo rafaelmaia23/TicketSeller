@@ -1,4 +1,5 @@
-﻿using TicketSeller.DAL.Data;
+﻿using Microsoft.AspNetCore.Identity;
+using TicketSeller.DAL.Data;
 using TicketSeller.DAL.Repository.IRepository;
 
 namespace TicketSeller.DAL.Repository;
@@ -6,16 +7,18 @@ namespace TicketSeller.DAL.Repository;
 public class UnitOfWork : IUnitOfWork
 {
     private readonly AppDbContext _db;
-    public UnitOfWork(AppDbContext db)
+    private readonly SignInManager<IdentityUser<int>> _signInManager;
+    public UnitOfWork(AppDbContext db, SignInManager<IdentityUser<int>> signInManager)
     {
         _db = db;
+        _signInManager = signInManager;
         Movie = new MovieRepository(_db);
         Genre = new GenreRepository(_db);
         MovieGenre = new MovieGenresRepository(_db);
         Adress = new AdressRepository(_db);
         Cinema = new CinemaRepository(_db);
         MovieSession = new MovieSessionRepository(_db);
-        User = new UserRepository(_db);
+        User = new UserRepository(_db, _signInManager);       
     }
     public IMovieRepository Movie { get; private set; }
     public IGenreRepository Genre { get; private set; }

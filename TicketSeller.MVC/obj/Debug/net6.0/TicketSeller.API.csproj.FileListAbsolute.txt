@@ -91,3 +91,4 @@ D:\OneDrive\Estudo\projetos\C#\TicketSeller\TicketSeller.MVC\bin\Debug\net6.0\Mi
 D:\OneDrive\Estudo\projetos\C#\TicketSeller\TicketSeller.MVC\bin\Debug\net6.0\MailKit.dll
 D:\OneDrive\Estudo\projetos\C#\TicketSeller\TicketSeller.MVC\bin\Debug\net6.0\MimeKit.dll
 D:\OneDrive\Estudo\projetos\C#\TicketSeller\TicketSeller.MVC\bin\Debug\net6.0\BouncyCastle.Crypto.dll
+D:\OneDrive\Estudo\projetos\C#\TicketSeller\TicketSeller.MVC\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Binder.dll

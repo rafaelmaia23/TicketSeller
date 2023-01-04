@@ -3,18 +3,17 @@ using MailKit.Net.Smtp;
 using TicketSeller.Models.Models;
 using TicketSeller.Services.Services.IServices;
 using Microsoft.Extensions.Configuration;
-using MailKit.Security;
 using System.Net;
 
 namespace TicketSeller.Services.Services;
 
 public class EmailService : IEmailService
 {
-    private IConfiguration _configuration;
+    private readonly IConfiguration _config;
 
-    public EmailService(IConfiguration configuration)
+    public EmailService(IConfiguration config)
     {
-        _configuration = configuration;
+        _config = config;
     }
 
     public void SendConfirmationEmail(string[] receiverEmail, string emailSubject, int identityUserId, string confirmationToken)
@@ -31,13 +30,18 @@ public class EmailService : IEmailService
         using(var client = new SmtpClient())
         {
             var NetworkCredentials = new NetworkCredential(
-                "rafadevemail@gmail.com",
-                "yzqeffzlaerzfcui"
+                _config.GetValue<string>("EmailSettings:From"),
+                _config.GetValue<string>("EmailSettings:Password")
+                //"rafadevemail@gmail.com",
+                //"yzqeffzlaerzfcui"
                 );            
             try
             {
-                client.Connect("smtp.gmail.com",
-                    465,
+                client.Connect(
+                    _config.GetValue<string>("EmailSettings:SmtpServer"),
+                    _config.GetValue<int>("EmailSettings:Port"),
+                    //"smtp.gmail.com",
+                    //465,
                     true);
                 client.AuthenticationMechanisms.Remove("XOUATH2");
                 client.Authenticate(NetworkCredentials);
@@ -57,7 +61,7 @@ public class EmailService : IEmailService
 
     private MimeMessage CreateEmailMessage(EmailMessage emailMessage)
     {
-        var from = Convert.ToString(_configuration.GetSection("EmailSettings:From"));
+        var from = _config.GetValue<string>("EmailSettings:From");
         MimeMessage newEmailMessage = new MimeMessage();
         newEmailMessage.From.Add(new MailboxAddress("reciver", from));
         newEmailMessage.To.AddRange(emailMessage.ReceiverEmail);

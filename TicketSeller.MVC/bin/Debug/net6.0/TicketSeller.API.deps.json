@@ -15,6 +15,7 @@
           "Microsoft.AspNetCore.Identity": "2.2.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.12",
           "Microsoft.EntityFrameworkCore.Proxies": "7.0.1",
+          "Microsoft.Extensions.Configuration.Binder": "7.0.1",
           "Microsoft.Extensions.Identity.Stores": "6.0.12",
           "MimeKit": "3.4.3",
           "Swashbuckle.AspNetCore": "6.4.0",
@@ -416,6 +417,17 @@
           "lib/net6.0/Microsoft.Extensions.Configuration.Abstractions.dll": {
             "assemblyVersion": "7.0.0.0",
             "fileVersion": "7.0.22.51805"
+          }
+        }
+      },
+      "Microsoft.Extensions.Configuration.Binder/7.0.1": {
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Abstractions": "7.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.Extensions.Configuration.Binder.dll": {
+            "assemblyVersion": "7.0.0.0",
+            "fileVersion": "7.0.122.56804"
           }
         }
       },
@@ -959,6 +971,7 @@
       },
       "TicketSeller.DAL/1.0.0": {
         "dependencies": {
+          "Microsoft.AspNetCore.Identity": "2.2.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.12",
           "Microsoft.EntityFrameworkCore": "7.0.1",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.1",
@@ -984,6 +997,7 @@
           "FluentResults": "3.15.1",
           "MailKit": "3.4.3",
           "Microsoft.AspNetCore.Identity": "2.2.0",
+          "Microsoft.Extensions.Configuration.Binder": "7.0.1",
           "TicketSeller.DAL": "1.0.0",
           "TicketSeller.Models": "1.0.0"
         },
@@ -1264,6 +1278,13 @@
       "sha512": "sha512-f34u2eaqIjNO9YLHBz8rozVZ+TcFiFs0F3r7nUJd7FRkVSxk8u4OpoK226mi49MwexHOR2ibP9MFvRUaLilcQQ==",
       "path": "microsoft.extensions.configuration.abstractions/7.0.0",
       "hashPath": "microsoft.extensions.configuration.abstractions.7.0.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Configuration.Binder/7.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-vAuFMOvK68JIW0NlLp1mJkQxsJ2hGmLKRE2rOyIffZ/L0Xvr6hsPMF8thxPGTcgOM6eezisSTTVVHdByY6ejbQ==",
+      "path": "microsoft.extensions.configuration.binder/7.0.1",
+      "hashPath": "microsoft.extensions.configuration.binder.7.0.1.nupkg.sha512"
     },
     "Microsoft.Extensions.DependencyInjection/7.0.0": {
       "type": "package",
