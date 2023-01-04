@@ -1,4 +1,5 @@
 ﻿using FluentResults;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TicketSeller.Models.Dtos.MovieDto;
 using TicketSeller.Services.Services.IServices;
@@ -17,6 +18,7 @@ public class MovieController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize(Roles = "admin")]
     public IActionResult AddMovie([FromBody] CreateMovieDto createMovieDto)
     {
         ReadMovieDto readMovieDto = _movieService.AddMovie(createMovieDto);

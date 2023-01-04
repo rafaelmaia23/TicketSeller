@@ -92,3 +92,6 @@ D:\OneDrive\Estudo\projetos\C#\TicketSeller\TicketSeller.MVC\bin\Debug\net6.0\Ma
 D:\OneDrive\Estudo\projetos\C#\TicketSeller\TicketSeller.MVC\bin\Debug\net6.0\MimeKit.dll
 D:\OneDrive\Estudo\projetos\C#\TicketSeller\TicketSeller.MVC\bin\Debug\net6.0\BouncyCastle.Crypto.dll
 D:\OneDrive\Estudo\projetos\C#\TicketSeller\TicketSeller.MVC\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Binder.dll
+D:\OneDrive\Estudo\projetos\C#\TicketSeller\TicketSeller.MVC\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\OneDrive\Estudo\projetos\C#\TicketSeller\TicketSeller.MVC\bin\Debug\net6.0\Microsoft.AspNetCore.Authorization.dll
+D:\OneDrive\Estudo\projetos\C#\TicketSeller\TicketSeller.MVC\bin\Debug\net6.0\Microsoft.AspNetCore.Metadata.dll

@@ -14,19 +14,25 @@ public class RegisterService : IRegisterService
     private readonly IMapper _mapper;
     private readonly UserManager<IdentityUser<int>> _userManager;
     private readonly IEmailService _emailService;
+    private readonly RoleManager<IdentityRole<int>> _roleManager;
 
-    public RegisterService(IMapper mapper, UserManager<IdentityUser<int>> userManager, IEmailService emailService)
+    public RegisterService(IMapper mapper, UserManager<IdentityUser<int>> userManager, IEmailService emailService, RoleManager<IdentityRole<int>> roleManager)
     {
         _mapper = mapper;
         _userManager = userManager;
         _emailService = emailService;
+        _roleManager = roleManager;
     }
 
     public Result RegisterUser(CreateUserDto createUserDto)
     {
         User user = _mapper.Map<User>(createUserDto);
         IdentityUser<int> identityUser = _mapper.Map<IdentityUser<int>>(user);
-        Task<IdentityResult> identityResult = _userManager.CreateAsync(identityUser, createUserDto.Password);
+        Task<IdentityResult> identityResult = _userManager
+            .CreateAsync(identityUser, createUserDto.Password);
+        identityResult.Wait();
+        IdentityResult createRoleResult = _roleManager.CreateAsync(new IdentityRole<int>("admin")).Result;
+        IdentityResult userRoleResult = _userManager.AddToRoleAsync(identityUser, "admin").Result;
         if (identityResult.Result.Succeeded)
         {
             Task<string> code = _userManager.GenerateEmailConfirmationTokenAsync(identityUser);

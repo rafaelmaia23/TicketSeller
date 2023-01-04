@@ -10,12 +10,13 @@ namespace TicketSeller.Services.Services;
 
 public class LoginTokenService : ILoginTokenService
 {
-    public LoginToken CreateLoginToken(IdentityUser<int> user)
+    public LoginToken CreateLoginToken(IdentityUser<int> user, string? role)
     {
         Claim[] userClaims = new Claim[]
         {
             new Claim("username", user.UserName),
-            new Claim("id", user.Id.ToString())
+            new Claim("id", user.Id.ToString()),
+            new Claim(ClaimTypes.Role, role),
         };
 
         SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(

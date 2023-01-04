@@ -33,7 +33,9 @@ public class LoginService : ILoginService
                 .FirstOrDefault(user =>
                 user.NormalizedUserName == loginRequest.Username.ToUpper());
 
-            LoginToken loginToken = _loginTokenService.CreateLoginToken(identityUser!);
+            LoginToken loginToken = _loginTokenService
+                .CreateLoginToken(identityUser!,
+                _signInManager.UserManager.GetRolesAsync(identityUser).Result.FirstOrDefault());
             return Result.Ok().WithSuccess(loginToken.Value);
         }
 

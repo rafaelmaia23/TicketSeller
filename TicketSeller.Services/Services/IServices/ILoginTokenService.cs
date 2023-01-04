@@ -5,5 +5,5 @@ namespace TicketSeller.Services.Services.IServices;
 
 public interface ILoginTokenService
 {
-    LoginToken CreateLoginToken(IdentityUser<int> user);
+    LoginToken CreateLoginToken(IdentityUser<int> user, string? role);
 }

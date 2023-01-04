@@ -1,5 +1,8 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 using TicketSeller.DAL.Data;
 using TicketSeller.DAL.Repository;
 using TicketSeller.DAL.Repository.IRepository;
@@ -20,6 +23,24 @@ builder.Services.AddIdentity<IdentityUser<int>, IdentityRole<int>>(
     )
     .AddEntityFrameworkStores<UserDbContext>()
     .AddDefaultTokenProviders();
+builder.Services.AddAuthentication(auth =>
+{
+    auth.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    auth.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(token =>
+{
+    token.RequireHttpsMetadata = false;
+    token.SaveToken = true;
+    token.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
+            "obL[}*Q1*Q[Yu1c5]'-Y'p;kmV,XyKGC/Vn(b@4Shd?%YPM*mF,yc:jrqra=.BM")),
+        ValidateIssuer = false,
+        ValidateAudience = false,
+        ClockSkew = TimeSpan.Zero
+    };
+});
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IMovieService, MovieService>();
 builder.Services.AddScoped<IGenreService, GenreService>();
@@ -46,6 +67,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
