@@ -1,9 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using TicketSeller.Models.Models;
-using System.Text.Json.Serialization;
 using TicketSeller.Models.Dtos.MovieDto;
 using TicketSeller.Models.Dtos.CinemaDto;
+using TicketSeller.Models.Dtos.SeatDto;
+using Newtonsoft.Json;
 
 namespace TicketSeller.Models.Dtos.MovieSessionDto;
 

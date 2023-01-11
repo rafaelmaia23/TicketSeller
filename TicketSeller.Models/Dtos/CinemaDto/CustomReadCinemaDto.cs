@@ -1,14 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
-using TicketSeller.Models.Dtos.AdressDto;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace TicketSeller.Models.Dtos.CinemaDto
+namespace TicketSeller.Models.Dtos.CinemaDto;
+
+public class CustomReadCinemaDto
 {
-    public class CustomReadCinemaDto
-    {
-        [Key]
-        public int Id { get; set; }
-        public string Name { get; set; } = null!;
-    }
+    [Key]
+    public int Id { get; set; }
+    public string Name { get; set; } = null!;
 }

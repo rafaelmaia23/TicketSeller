@@ -11,10 +11,12 @@ public class MovieSession
     [Required]        
     [ForeignKey("Movie")]
     public int MovieId { get; set; }
+    [Required]
     public virtual Movie Movie { get; set; } = null!;
     [Required]
     [ForeignKey("Cinema")]
     public int CinemaId { get; set; }
+    [Required]
     public virtual Cinema Cinema { get; set; } = null!;
     [Required]
     public int MovieRoomNumber { get; set; }

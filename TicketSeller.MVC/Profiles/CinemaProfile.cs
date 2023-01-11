@@ -11,8 +11,7 @@ public class CinemaProfile : Profile
         CreateMap<Cinema, ReadCinemaDto>()
             .ForMember(cinema => cinema.MovieSessions, opts => opts
             .MapFrom(cinema => cinema.MovieSessions.Select(
-                m => new { m.Id, m.MovieId, m.Movie.Title, m.MovieRoomNumber, m.StartDateTime, m.EndDateTime})))
-           ;
+                m => new { m.Id, m.MovieId, m.Movie.Title, m.MovieRoomNumber, m.StartDateTime, m.EndDateTime})));
         CreateMap<CreateCinemaDto, Cinema>();
         CreateMap<UpdateCinemaDto, Cinema>();
         CreateMap<Cinema, CustomReadCinemaDto>();

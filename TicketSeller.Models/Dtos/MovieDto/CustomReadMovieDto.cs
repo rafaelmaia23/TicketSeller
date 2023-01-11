@@ -1,12 +1,7 @@
-﻿using Newtonsoft.Json;
-using System.ComponentModel.DataAnnotations;
-using TicketSeller.Models.Models;
+﻿namespace TicketSeller.Models.Dtos.MovieDto;
 
-namespace TicketSeller.Models.Dtos.MovieDto;
-
-public class ReadMovieDto
+public class CustomReadMovieDto
 {
-    [Key]
     public int Id { get; set; }
     public string Title { get; set; } = null!;
     public string Description { get; set; } = null!;
@@ -14,6 +9,4 @@ public class ReadMovieDto
     public string Director { get; set; } = null!;
     public ICollection<object> MovieGenres { get; set; } = null!;
     public int Classification { get; set; }
-    [JsonIgnore]
-    public ICollection<object>? MovieSessions { get; set; }
 }

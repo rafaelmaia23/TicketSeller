@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
 using TicketSeller.Models.Dtos.CinemaDto;
 
 namespace TicketSeller.Models.Dtos.AdressDto;

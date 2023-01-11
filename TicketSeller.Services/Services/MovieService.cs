@@ -21,6 +21,8 @@ public class MovieService : IMovieService
     public ReadMovieDto AddMovie(CreateMovieDto createMovieDto)
     {
         Movie movie = _mapper.Map<Movie>(createMovieDto);
+        _unitOfWork.Movie.Add(movie);
+        _unitOfWork.Save();
         foreach (var id in createMovieDto.GenreIds)
         {
             MovieGenre movieGenres = new MovieGenre()
@@ -30,7 +32,6 @@ public class MovieService : IMovieService
                 GenreId = id,
                 Genre = _unitOfWork.Genre.GetById(x => x.Id == id)
             };
-            _unitOfWork.Movie.Add(movie);
             _unitOfWork.MovieGenre.Add(movieGenres);
             _unitOfWork.Save();
         }

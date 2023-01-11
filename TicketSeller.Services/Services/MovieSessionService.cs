@@ -1,8 +1,5 @@
 ﻿using AutoMapper;
 using FluentResults;
-using Microsoft.AspNetCore.JsonPatch;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using TicketSeller.DAL.Repository.IRepository;
 using TicketSeller.Models.Dtos.MovieSessionDto;
 using TicketSeller.Models.Models;
@@ -23,6 +20,7 @@ public class MovieSessionService : IMovieSessionService
 
     public Result<ReadMovieSessionDto> AddMovieSessions(CreateMovieSessionDto createMovieSessionDto)
     {
+        //todo validar cinema e movie para não serem null
         MovieSession movieSession = _mapper.Map<MovieSession>(createMovieSessionDto);
         CalculateEndTime(movieSession);
         if (CheckIfRoomIsAvailable(movieSession))

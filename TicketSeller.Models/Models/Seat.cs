@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json.Serialization;
 
 namespace TicketSeller.Models.Models;
 
@@ -14,7 +13,6 @@ public class Seat
     public bool IsAvailable { get; set; }
     [ForeignKey("MovieSession")]
     public int MovieSessionId { get; set; }
-    [JsonIgnore]
     public virtual MovieSession MovieSession { get; set; } = null!;
 
     public Seat(char row, int column, bool isAvailable, int movieSessionId)

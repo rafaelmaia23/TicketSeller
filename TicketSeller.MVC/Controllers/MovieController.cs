@@ -66,8 +66,8 @@ public class MovieController : ControllerBase
     public IActionResult PutMovie(int id, [FromBody] UpdateMovieDto updateMovieDto)
     {
         Result result = _movieService.PutMovie(id, updateMovieDto);
-        if(result.IsSuccess) return NoContent();
-        return NotFound();
+        if (result.IsFailed) return NotFound(result.Reasons);
+        return NoContent();
     }
 
     [HttpDelete("{id}")]

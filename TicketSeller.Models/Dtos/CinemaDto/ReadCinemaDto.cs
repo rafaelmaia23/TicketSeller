@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
 using TicketSeller.Models.Dtos.AdressDto;
+using Newtonsoft.Json;
 
 namespace TicketSeller.Models.Dtos.CinemaDto;
 

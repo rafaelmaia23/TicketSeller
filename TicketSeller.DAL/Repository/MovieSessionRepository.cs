@@ -17,16 +17,16 @@ public class MovieSessionRepository : Repository<MovieSession>, IMovieSessionRep
     public override MovieSession GetById(Expression<Func<MovieSession, bool>> expression)
     {
         return _db.MovieSessions
-            .Include(x => x.Cinema)
             .Include(x => x.Movie)
+            .Include(x => x.Cinema)
             .FirstOrDefault(expression);
     }
 
     public override IEnumerable<MovieSession> GetAll()
     {
         return _db.MovieSessions
-            .Include(x => x.Cinema)
             .Include(x => x.Movie)
+            .Include(x => x.Cinema)
             .ToList();
     }
 
