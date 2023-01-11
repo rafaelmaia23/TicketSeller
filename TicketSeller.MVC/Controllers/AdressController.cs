@@ -19,7 +19,7 @@ public class AdressController : ControllerBase
     }
 
     [HttpPost]
-    [Authorize(Roles = "admin")]
+    //[Authorize(Roles = "admin")]
     public IActionResult AddAdress([FromBody] CreateAdressDto createAdressDto)
     {
         ReadAdressDto readAdressDto = _adressService.AddAdress(createAdressDto);
@@ -27,7 +27,7 @@ public class AdressController : ControllerBase
     }
 
     [HttpGet]
-    [Authorize(Roles = "admin")]
+    //[Authorize(Roles = "admin")]
     public IActionResult GetAdresses()
     {
         IEnumerable<ReadAdressDto> readAdressDtos = _adressService.GetAdresses();
@@ -36,7 +36,7 @@ public class AdressController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    [Authorize(Roles = "admin")]
+    //[Authorize(Roles = "admin")]
     public IActionResult GetAdressById(int id)
     {
         ReadAdressDto readAdressDto = _adressService.GetAdressById(id);
@@ -45,7 +45,7 @@ public class AdressController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    [Authorize(Roles = "admin")]
+    //[Authorize(Roles = "admin")]
     public IActionResult PutMovie(int id, [FromBody] UpdateAdressDto updateAdressDto)
     {
         Result result = _adressService.PutAdress(id, updateAdressDto);
@@ -54,7 +54,7 @@ public class AdressController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    [Authorize(Roles = "admin")]
+    //[Authorize(Roles = "admin")]
     public IActionResult DeleteMovie(int id)
     {
         Result result = _adressService.DeleteAdress(id);

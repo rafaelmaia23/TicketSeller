@@ -19,7 +19,7 @@ public class GenreController : ControllerBase
     }
 
     [HttpPost]
-    [Authorize(Roles = "admin")]
+    //[Authorize(Roles = "admin")]
     public IActionResult AddGenre([FromBody] CreateGenreDto createGenreDto)
     {
         ReadGenreDto readGenreDto = _genreService.AddGenre(createGenreDto);
@@ -27,7 +27,7 @@ public class GenreController : ControllerBase
     }
 
     [HttpGet]
-    [Authorize(Roles = "admin")]
+    //[Authorize(Roles = "admin")]
     public IActionResult GetGenres()
     {
         IEnumerable<ReadGenreDto> readGenreDtos = _genreService.GetGenres();
@@ -35,8 +35,17 @@ public class GenreController : ControllerBase
         return NotFound();
     }
 
+    [HttpGet("MoviesList")]
+    //[Authorize(Roles = "admin")]
+    public IActionResult GetMoviesListOfGenres()
+    {
+        IEnumerable<CustomReadGenreDto> customReadGenreDtos = _genreService.GetMoviesListOfGenres();
+        if (customReadGenreDtos != null) return Ok(customReadGenreDtos);
+        return NotFound();
+    }
+
     [HttpGet("{id}")]
-    [Authorize(Roles = "admin")]
+    //[Authorize(Roles = "admin")]
     public IActionResult GetGenreById(int id)
     {
         ReadGenreDto readGenreDto = _genreService.GetGenreById(id);
@@ -44,8 +53,17 @@ public class GenreController : ControllerBase
         return NotFound();
     }
 
+    [HttpGet("MoviesList/{movieId}")]
+    //[Authorize(Roles = "admin")]
+    public IActionResult GetMoviesListOfGenreById(int movieId)
+    {
+        CustomReadGenreDto customReadGenreDto = _genreService.GetMoviesListOfGenreById(movieId);
+        if (customReadGenreDto != null) return Ok(customReadGenreDto);
+        return NotFound();
+    }
+
     [HttpPut("{id}")]
-    [Authorize(Roles = "admin")]
+    //[Authorize(Roles = "admin")]
     public IActionResult PutGenre(int id, [FromBody] UpdateGenreDto updateGenreDto)
     {
         Result result = _genreService.PutGenre(id, updateGenreDto);
@@ -54,7 +72,7 @@ public class GenreController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    [Authorize(Roles = "admin")]
+    //[Authorize(Roles = "admin")]
     public IActionResult DeleteGenre(int id)
     {
         Result result = _genreService.DeleteGenre(id);

@@ -15,7 +15,6 @@ public class ReadAdressDto
     public string ZipCode { get; set; } = null!;
     public string City { get; set; } = null!;
     public string State { get; set; } = null!;
-    public string Contry { get; set; } = null!;
-    [JsonIgnore]
-    public ReadCinemaDto? Cinema { get; set; }
+    public string Contry { get; set; } = null!;    
+    public CustomReadCinemaDto Cinema { get; set; }
 }

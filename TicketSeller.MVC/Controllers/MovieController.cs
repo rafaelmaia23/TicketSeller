@@ -18,7 +18,7 @@ public class MovieController : ControllerBase
     }
 
     [HttpPost]
-    [Authorize(Roles = "admin")]
+    //[Authorize(Roles = "admin")]
     public IActionResult AddMovie([FromBody] CreateMovieDto createMovieDto)
     {
         ReadMovieDto readMovieDto = _movieService.AddMovie(createMovieDto);
@@ -26,7 +26,7 @@ public class MovieController : ControllerBase
     }
 
     [HttpGet]
-    [Authorize(Roles = "admin, client")]
+    //[Authorize(Roles = "admin, client")]
     public IActionResult GetMovies()
     {
         IEnumerable<ReadMovieDto> readMovieDtos = _movieService.GetMovies();
@@ -35,7 +35,7 @@ public class MovieController : ControllerBase
     }        
 
     [HttpGet("{id}")]
-    [Authorize(Roles = "admin, client")]
+    //[Authorize(Roles = "admin, client")]
     public IActionResult GetMovieById(int id)
     {
         ReadMovieDto readMovieDto = _movieService.GetMovieById(id);
@@ -44,7 +44,7 @@ public class MovieController : ControllerBase
     }
 
     [HttpGet("Genre/{genreId}")]
-    [Authorize(Roles = "admin, client")]
+    //[Authorize(Roles = "admin, client")]
     public IActionResult GetMoviesByGenre(int genreId)
     {
         IEnumerable<ReadMovieDto> readMovieDto = _movieService.GetMoviesByGenre(genreId);
@@ -53,7 +53,7 @@ public class MovieController : ControllerBase
     }
 
     [HttpGet("Cinema/{cinemaId}")]
-    [Authorize(Roles = "admin, client")]
+    //[Authorize(Roles = "admin, client")]
     public IActionResult GetMoviesByCinema(int cinemaId)
     {
         IEnumerable<ReadMovieDto> readMovieDto = _movieService.GetMoviesByCinema(cinemaId);
@@ -62,7 +62,7 @@ public class MovieController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    [Authorize(Roles = "admin")]
+    //[Authorize(Roles = "admin")]
     public IActionResult PutMovie(int id, [FromBody] UpdateMovieDto updateMovieDto)
     {
         Result result = _movieService.PutMovie(id, updateMovieDto);
@@ -71,7 +71,7 @@ public class MovieController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    [Authorize(Roles = "admin")]
+    //[Authorize(Roles = "admin")]
     public IActionResult DeleteMovie(int id)
     {
         Result result = _movieService.DeleteMovie(id);

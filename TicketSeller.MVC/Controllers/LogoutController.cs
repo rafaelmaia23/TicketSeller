@@ -18,7 +18,7 @@ public class LogoutController : ControllerBase
     }
 
     [HttpPost]
-    [Authorize(Roles = "admin, client")]
+    //[Authorize(Roles = "admin, client")]
     public IActionResult LogoutUser()
     {
         Result result = _logoutService.LogoutUser();

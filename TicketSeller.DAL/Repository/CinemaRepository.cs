@@ -17,14 +17,14 @@ public class CinemaRepository : Repository<Cinema>, ICinemaRepository
     public override Cinema? GetById(Expression<Func<Cinema, bool>> expression)
     {
         return _db.Cinemas
-            .Include(a => a.Adress)
+            .Include(c => c.Adress)
             .FirstOrDefault(expression);
     }
 
     public override IEnumerable<Cinema> GetAll()
     {
         return _db.Cinemas
-            .Include(a => a.Adress)
+            .Include(c => c.Adress)
             .ToList();
     }
 }

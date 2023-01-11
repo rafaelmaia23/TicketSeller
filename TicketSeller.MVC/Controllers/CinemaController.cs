@@ -19,7 +19,7 @@ public class CinemaController : ControllerBase
     }
 
     [HttpPost]
-    [Authorize(Roles = "admin")]
+    //[Authorize(Roles = "admin")]
     public IActionResult AddCinema([FromBody] CreateCinemaDto createCinemaDto)
     {
         ReadCinemaDto readCinemaDto = _cinemaService.AddCinema(createCinemaDto);
@@ -28,7 +28,7 @@ public class CinemaController : ControllerBase
     }
 
     [HttpGet]
-    [Authorize(Roles = "admin, client")]
+    //[Authorize(Roles = "admin, client")]
     public IActionResult GetCinemas()
     {
         IEnumerable<ReadCinemaDto> readCinemaDtos = _cinemaService.GetCinemas();
@@ -37,7 +37,7 @@ public class CinemaController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    [Authorize(Roles = "admin, client")]
+    //[Authorize(Roles = "admin, client")]
     public IActionResult GetCinemaById(int id)
     {
         ReadCinemaDto readCinemaDto = _cinemaService.GetCinemaById(id);
@@ -46,7 +46,7 @@ public class CinemaController : ControllerBase
     }
 
     [HttpGet("Movie/{movieId}")]
-    [Authorize(Roles = "admin, client")]
+    //[Authorize(Roles = "admin, client")]
     public IActionResult GetCinemasByMovie(int movieId)
     {
         IEnumerable<ReadCinemaDto> readCinemaDtos = _cinemaService.GetCinemasByMovie(movieId);
@@ -55,7 +55,7 @@ public class CinemaController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    [Authorize(Roles = "admin")]
+    //[Authorize(Roles = "admin")]
     public IActionResult PutCinema(int id, [FromBody] UpdateCinemaDto updateCinemaDto)
     {
         Result result = _cinemaService.PutCinema(id, updateCinemaDto);
@@ -64,7 +64,7 @@ public class CinemaController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    [Authorize(Roles = "admin")]
+    //[Authorize(Roles = "admin")]
     public IActionResult DeleteCinema(int id)
     {
         Result result = _cinemaService.DeleteCinema(id);

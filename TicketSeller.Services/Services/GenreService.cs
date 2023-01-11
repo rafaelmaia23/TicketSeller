@@ -34,6 +34,13 @@ public class GenreService : IGenreService
         return readGenreDtos;
     }
 
+    public IEnumerable<CustomReadGenreDto> GetMoviesListOfGenres()
+    {
+        IEnumerable<Genre> genres = _unitOfWork.Genre.GetAll();
+        List<CustomReadGenreDto> customReadGenreDtos = _mapper.Map<List<CustomReadGenreDto>>(genres);
+        return customReadGenreDtos;
+    }
+
     public ReadGenreDto GetGenreById(int id)
     {
         Genre genre = _unitOfWork.Genre.GetById(x => x.Id == id);
@@ -41,6 +48,17 @@ public class GenreService : IGenreService
         {
             ReadGenreDto readGenreDto = _mapper.Map<ReadGenreDto>(genre);
             return readGenreDto;
+        }
+        return null;
+    }
+
+    public CustomReadGenreDto GetMoviesListOfGenreById(int movieId)
+    {
+        Genre genre = _unitOfWork.Genre.GetById(x => x.Id == movieId);
+        if (genre != null)
+        {
+            CustomReadGenreDto customReadGenreDto = _mapper.Map<CustomReadGenreDto>(genre);
+            return customReadGenreDto;
         }
         return null;
     }
@@ -63,4 +81,5 @@ public class GenreService : IGenreService
         _unitOfWork.Save();
         return Result.Ok();
     }
+
 }

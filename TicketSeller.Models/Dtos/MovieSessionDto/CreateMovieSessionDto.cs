@@ -12,7 +12,5 @@ public class CreateMovieSessionDto
     public int MovieRoomNumber { get; set; }
     [Required]
     public DateTime StartDateTime { get; set; }
-    [Required]
-    public DateTime EndDateTime { get; set; }
     
 }

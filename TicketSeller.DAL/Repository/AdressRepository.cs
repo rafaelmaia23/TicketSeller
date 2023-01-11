@@ -1,4 +1,6 @@
-﻿using TicketSeller.DAL.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
+using TicketSeller.DAL.Data;
 using TicketSeller.DAL.Repository.IRepository;
 using TicketSeller.Models.Models;
 
@@ -13,9 +15,17 @@ public class AdressRepository : Repository<Adress>, IAdressRepository
         _db = db;
     }
 
+    public override Adress? GetById(Expression<Func<Adress, bool>> expression)
+    {
+        return _db.Adresses
+            .Include(a => a.Cinema)
+            .FirstOrDefault(expression);
+    }
+
     public override IEnumerable<Adress> GetAll()
     {
         return _db.Adresses
+            .Include(a => a.Cinema)
             .ToList();
     }
 }

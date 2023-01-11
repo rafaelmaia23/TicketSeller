@@ -11,5 +11,6 @@ public class AdressProfile : Profile
         CreateMap<Adress, ReadAdressDto>();
         CreateMap<CreateAdressDto, Adress>();
         CreateMap<UpdateAdressDto, Adress>();
+        CreateMap<Adress, CustomReadAdressDto>();
     }
 }

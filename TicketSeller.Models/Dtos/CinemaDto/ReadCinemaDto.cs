@@ -11,9 +11,7 @@ public class ReadCinemaDto
     [Key]
     public int Id { get; set; }
     public string Name { get; set; } = null!;
-    [ForeignKey("Adress")]
-    public int AdressId { get; set; }
-    public ReadAdressDto Adress { get; set; } = null!;
+    public CustomReadAdressDto Adress { get; set; } = null!;
     [JsonIgnore]
     public ICollection<object>? MovieSessions { get; set; }
 }

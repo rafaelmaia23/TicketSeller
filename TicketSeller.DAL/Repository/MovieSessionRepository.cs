@@ -29,4 +29,9 @@ public class MovieSessionRepository : Repository<MovieSession>, IMovieSessionRep
             .Include(x => x.Movie)
             .ToList();
     }
+
+    public bool Any(Expression<Func<MovieSession, bool>> expression)
+    {
+        return _db.MovieSessions.Any(expression);
+    }
 }

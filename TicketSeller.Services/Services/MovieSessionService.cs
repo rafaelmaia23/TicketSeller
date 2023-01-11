@@ -1,5 +1,8 @@
 ﻿using AutoMapper;
 using FluentResults;
+using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using TicketSeller.DAL.Repository.IRepository;
 using TicketSeller.Models.Dtos.MovieSessionDto;
 using TicketSeller.Models.Models;
@@ -18,21 +21,27 @@ public class MovieSessionService : IMovieSessionService
         _mapper = mapper;
     }
 
-    public ReadMovieSessionDto AddMovieSessions(CreateMovieSessionDto createMovieSessionDto)
+    public Result<ReadMovieSessionDto> AddMovieSessions(CreateMovieSessionDto createMovieSessionDto)
     {
         MovieSession movieSession = _mapper.Map<MovieSession>(createMovieSessionDto);
-        _unitOfWork.MovieSession.Add(movieSession);
-        _unitOfWork.Save();
-        //create the seats in the MovieSession
-        for (char row = 'A'; row <= 'O'; row++)
+        CalculateEndTime(movieSession);
+        if (CheckIfRoomIsAvailable(movieSession))
         {
-            for (int column = 1; column <= 10; column++)
+            _unitOfWork.MovieSession.Add(movieSession);        
+            _unitOfWork.Save();
+            //create the seats in the MovieSession
+            for (char row = 'A'; row <= 'O'; row++)
             {
-                movieSession.Seats.Add(new Seat(row, column, true, movieSession.Id));
-            }
-        }            
-        _unitOfWork.Save();
-        return _mapper.Map<ReadMovieSessionDto>(movieSession);
+                for (int column = 1; column <= 10; column++)
+                {
+                    movieSession.Seats.Add(new Seat(row, column, true, movieSession.Id));
+                }
+            }            
+            _unitOfWork.Save();
+            ReadMovieSessionDto readMovieSessionDto = _mapper.Map<ReadMovieSessionDto>(movieSession);
+            return Result.Ok(readMovieSessionDto);
+        };
+        return Result.Fail("Movie Room is not available");
     }       
 
     public IEnumerable<ReadMovieSessionDto> GetMovieSessions()
@@ -91,6 +100,7 @@ public class MovieSessionService : IMovieSessionService
         MovieSession movieSession = _unitOfWork.MovieSession.GetById(x => x.Id == id);
         if (movieSession == null) return Result.Fail("MovieSession Not Found");
         _mapper.Map(updateMovieSessionDto, movieSession);
+        CalculateEndTime(movieSession);
         _unitOfWork.Save();
         return Result.Ok();
     }
@@ -104,4 +114,42 @@ public class MovieSessionService : IMovieSessionService
         return Result.Ok();
     }
 
+    //public Result PatchMovieSession(int id, JsonPatchDocument<UpdateMovieSessionDto> jsonPatchDocument, ModelStateDictionary modelState)
+    //{
+    //    MovieSession movieSession = _unitOfWork.MovieSession.GetById(x => x.Id == id);
+    //    if (movieSession == null) return null;
+    //    UpdateMovieSessionDto updateMovieSessionDto = _mapper.Map<UpdateMovieSessionDto>(movieSession);
+    //    jsonPatchDocument.ApplyTo(updateMovieSessionDto, modelState);
+    //    if (!modelState.TryValidateModel(updateMovieSessionDto))
+    //    {
+    //        return Result.Fail("Fail to validate model");
+    //    }
+    //    _mapper.Map(updateMovieSessionDto, movieSession);
+    //    _unitOfWork.Save();
+    //    return Result.Ok();
+
+    //}
+
+    private void CalculateEndTime(MovieSession movieSession)
+    {
+        Movie movie = _unitOfWork.Movie.GetById(x => x.Id == movieSession.MovieId);
+        movieSession.EndDateTime = movieSession.StartDateTime.AddMinutes(movie.Duration);
+    }
+
+    private bool CheckIfRoomIsAvailable(MovieSession movieSession)
+    {
+        bool isRoomAvailable = !_unitOfWork.MovieSession.Any(s =>
+            //check if any movie session in db have the same cinema as the movie session in the parameter
+            s.CinemaId == movieSession.CinemaId &&
+            //check if any movie session in db have the same room number as the movie session in the parameter
+            s.MovieRoomNumber == movieSession.MovieRoomNumber &&
+            //check if any movie session in db have a star time that overlaps the star and end times of the movie session in the parameter
+            ((s.StartDateTime >= movieSession.StartDateTime &&
+            s.StartDateTime < movieSession.EndDateTime) ||
+            //check if any movie session in db have a end time that overlaps the star and end times of the movie session in the parameter
+            (s.EndDateTime > movieSession.StartDateTime &&
+            s.EndDateTime <= movieSession.EndDateTime)));
+
+        return isRoomAvailable;
+    }
 }

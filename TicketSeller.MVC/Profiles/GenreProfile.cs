@@ -8,7 +8,8 @@ public class GenreProfile : Profile
 {
     public GenreProfile()
     {
-        CreateMap<Genre, ReadGenreDto>()
+        CreateMap<Genre, ReadGenreDto>();
+        CreateMap<Genre, CustomReadGenreDto>()
             .ForMember(genre => genre.MovieGenres, opts => opts
             .MapFrom(genre => genre.MovieGenres.Select(
                 m => new { m.MovieId, m.Movie.Title })));
