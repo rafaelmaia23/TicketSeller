@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FluentResults;
+using Microsoft.AspNetCore.Mvc;
 using TicketSeller.DAL.Repository.IRepository;
 using TicketSeller.Models.Dtos.CinemaDto;
 using TicketSeller.Models.Models;
@@ -17,17 +18,16 @@ public class CinemaService : ICinemaService
         _unitOfWork = unitOfWork;
         _mapper = mapper;            
     }
-    public ReadCinemaDto? AddCinema(CreateCinemaDto createCinemaDto)
+    public Result<ReadCinemaDto>? AddCinema(CreateCinemaDto createCinemaDto)
     {
         Adress adress = _unitOfWork.Adress.GetById(x => x.Id == createCinemaDto.AdressId);
-        if(adress.Cinema != null)
-        {
-            return null;
-        }
+        if (adress == null) return null;
+        if (adress.Cinema != null) return Result.Fail("Cannot add a Cinema with an Adress already in use by another Cinema, please use an adress available");
         Cinema cinema = _mapper.Map<Cinema>(createCinemaDto);
         _unitOfWork.Cinema.Add(cinema);
         _unitOfWork.Save();
-        return _mapper.Map<ReadCinemaDto>(cinema);
+        ReadCinemaDto readCinemaDto = _mapper.Map<ReadCinemaDto>(cinema);
+        return Result.Ok(readCinemaDto);
     }      
 
     public IEnumerable<ReadCinemaDto> GetCinemas(int skip, int take)
@@ -68,7 +68,10 @@ public class CinemaService : ICinemaService
     public Result PutCinema(int id, UpdateCinemaDto updateCinemaDto)
     {
         Cinema cinema = _unitOfWork.Cinema.GetById(x => x.Id == id);
-        if (cinema == null) return Result.Fail("Cinema Not Found");
+        Adress adress = _unitOfWork.Adress.GetById(x => x.Id == updateCinemaDto.AdressId);
+        if (adress == null) return Result.Fail("Adress not found");
+        if (cinema == null) return Result.Fail("Cinema not found");
+        if ((adress.Cinema != null) & (adress.Cinema != cinema)) return null;
         _mapper.Map(updateCinemaDto, cinema);
         _unitOfWork.Save();
         return Result.Ok();

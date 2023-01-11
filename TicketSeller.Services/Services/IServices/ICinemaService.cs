@@ -5,7 +5,7 @@ namespace TicketSeller.Services.Services.IServices;
 
 public interface ICinemaService
 {
-    ReadCinemaDto AddCinema(CreateCinemaDto createCinemaDto);
+    Result<ReadCinemaDto> AddCinema(CreateCinemaDto createCinemaDto);
     IEnumerable<ReadCinemaDto> GetCinemas(int skip, int take);
     ReadCinemaDto GetCinemaById(int id);
     IEnumerable<ReadCinemaDto> GetCinemasByMovie(int movieId, int skip, int take);

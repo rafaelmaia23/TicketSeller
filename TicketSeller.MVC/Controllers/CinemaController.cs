@@ -22,9 +22,10 @@ public class CinemaController : ControllerBase
     //[Authorize(Roles = "admin")]
     public IActionResult AddCinema([FromBody] CreateCinemaDto createCinemaDto)
     {
-        ReadCinemaDto readCinemaDto = _cinemaService.AddCinema(createCinemaDto);
-        if(readCinemaDto == null) return Conflict("Cannot add a Cinema with an Adress already in use by another Cinema, please use an adress available");
-        return CreatedAtAction(nameof(GetCinemaById), new { id = readCinemaDto.Id }, readCinemaDto);
+        Result<ReadCinemaDto> result = _cinemaService.AddCinema(createCinemaDto);
+        if (result == null) return BadRequest("Adress Id do not exist");
+        if (result.IsFailed) return Conflict(result.Reasons);
+        return CreatedAtAction(nameof(GetCinemaById), new { id = result.Value.Id }, result.Value);
     }
 
     [HttpGet]
@@ -59,8 +60,9 @@ public class CinemaController : ControllerBase
     public IActionResult PutCinema(int id, [FromBody] UpdateCinemaDto updateCinemaDto)
     {
         Result result = _cinemaService.PutCinema(id, updateCinemaDto);
-        if (result.IsSuccess) return NoContent();
-        return NotFound();
+        if (result == null) return Conflict("Adress alredy in use");
+        if (result.IsFailed) return NotFound(result.Reasons);
+        return NoContent();
     }
 
     [HttpDelete("{id}")]
