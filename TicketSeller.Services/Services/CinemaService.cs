@@ -30,9 +30,9 @@ public class CinemaService : ICinemaService
         return _mapper.Map<ReadCinemaDto>(cinema);
     }      
 
-    public IEnumerable<ReadCinemaDto> GetCinemas()
+    public IEnumerable<ReadCinemaDto> GetCinemas(int skip, int take)
     {
-        IEnumerable<Cinema> cinemas = _unitOfWork.Cinema.GetAll();
+        IEnumerable<Cinema> cinemas = _unitOfWork.Cinema.GetAll().Skip(skip).Take(take);
         IEnumerable<ReadCinemaDto> readCinemaDtos = _mapper.Map<List<ReadCinemaDto>>(cinemas);
         return readCinemaDtos;
     }
@@ -48,9 +48,14 @@ public class CinemaService : ICinemaService
         return null;
     }
 
-    public IEnumerable<ReadCinemaDto>? GetCinemasByMovie(int movieId)
+    public IEnumerable<ReadCinemaDto>? GetCinemasByMovie(int movieId, int skip, int take)
     {
-        List<MovieSession> movieSessions = _unitOfWork.MovieSession.GetAll().Where(x => x.MovieId == movieId).ToList();
+        List<MovieSession> movieSessions = _unitOfWork.MovieSession
+            .GetAll()
+            .Where(x => x.MovieId == movieId)
+            .Skip(skip)
+            .Take(take)
+            .ToList();
         if (movieSessions == null) return null;
         var cinemas = new List<Cinema>();
         foreach(var movieSession in movieSessions)

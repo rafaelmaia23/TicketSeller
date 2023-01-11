@@ -27,16 +27,16 @@ public class GenreService : IGenreService
         return _mapper.Map<ReadGenreDto>(genre);
     }
 
-    public IEnumerable<ReadGenreDto> GetGenres()
+    public IEnumerable<ReadGenreDto> GetGenres(int skip, int take)
     {
-        IEnumerable<Genre> genres = _unitOfWork.Genre.GetAll();
+        IEnumerable<Genre> genres = _unitOfWork.Genre.GetAll().Skip(skip).Take(take);
         List<ReadGenreDto> readGenreDtos = _mapper.Map<List<ReadGenreDto>>(genres);
         return readGenreDtos;
     }
 
-    public IEnumerable<CustomReadGenreDto> GetMoviesListOfGenres()
+    public IEnumerable<CustomReadGenreDto> GetMoviesListOfGenres(int skip, int take)
     {
-        IEnumerable<Genre> genres = _unitOfWork.Genre.GetAll();
+        IEnumerable<Genre> genres = _unitOfWork.Genre.GetAll().Skip(skip).Take(take);
         List<CustomReadGenreDto> customReadGenreDtos = _mapper.Map<List<CustomReadGenreDto>>(genres);
         return customReadGenreDtos;
     }

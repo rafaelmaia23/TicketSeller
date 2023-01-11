@@ -25,9 +25,9 @@ public class AdressService : IAdressService
         _unitOfWork.Save();
         return _mapper.Map<ReadAdressDto>(adress);
     }
-    public IEnumerable<ReadAdressDto> GetAdresses()
+    public IEnumerable<ReadAdressDto> GetAdresses(int skip, int take)
     {
-        IEnumerable<Adress> adresses = _unitOfWork.Adress.GetAll();
+        IEnumerable<Adress> adresses = _unitOfWork.Adress.GetAll().Skip(skip).Take(take);
         IEnumerable<ReadAdressDto> readAdressDtos = _mapper.Map<List<ReadAdressDto>>(adresses);
         return readAdressDtos;
     }

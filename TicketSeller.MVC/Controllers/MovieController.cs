@@ -27,9 +27,9 @@ public class MovieController : ControllerBase
 
     [HttpGet]
     //[Authorize(Roles = "admin, client")]
-    public IActionResult GetMovies()
+    public IActionResult GetMovies([FromQuery] int skip = 0, [FromQuery] int take = 20)
     {
-        IEnumerable<ReadMovieDto> readMovieDtos = _movieService.GetMovies();
+        IEnumerable<ReadMovieDto> readMovieDtos = _movieService.GetMovies(skip, take);
         if (readMovieDtos != null) return Ok(readMovieDtos);
         return NotFound();
     }        
@@ -45,18 +45,18 @@ public class MovieController : ControllerBase
 
     [HttpGet("Genre/{genreId}")]
     //[Authorize(Roles = "admin, client")]
-    public IActionResult GetMoviesByGenre(int genreId)
+    public IActionResult GetMoviesByGenre(int genreId, [FromQuery] int skip = 0, [FromQuery] int take = 20)
     {
-        IEnumerable<ReadMovieDto> readMovieDto = _movieService.GetMoviesByGenre(genreId);
+        IEnumerable<ReadMovieDto> readMovieDto = _movieService.GetMoviesByGenre(genreId, skip, take);
         if (readMovieDto != null) return Ok(readMovieDto);
         return NotFound();
     }
 
     [HttpGet("Cinema/{cinemaId}")]
     //[Authorize(Roles = "admin, client")]
-    public IActionResult GetMoviesByCinema(int cinemaId)
+    public IActionResult GetMoviesByCinema(int cinemaId, [FromQuery] int skip = 0, [FromQuery] int take = 20)
     {
-        IEnumerable<ReadMovieDto> readMovieDto = _movieService.GetMoviesByCinema(cinemaId);
+        IEnumerable<ReadMovieDto> readMovieDto = _movieService.GetMoviesByCinema(cinemaId, skip, take);
         if (readMovieDto != null) return Ok(readMovieDto);
         return NotFound();
     }

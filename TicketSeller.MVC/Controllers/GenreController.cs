@@ -28,18 +28,18 @@ public class GenreController : ControllerBase
 
     [HttpGet]
     //[Authorize(Roles = "admin")]
-    public IActionResult GetGenres()
+    public IActionResult GetGenres([FromQuery] int skip = 0, [FromQuery] int take = 20)
     {
-        IEnumerable<ReadGenreDto> readGenreDtos = _genreService.GetGenres();
+        IEnumerable<ReadGenreDto> readGenreDtos = _genreService.GetGenres(skip, take);
         if (readGenreDtos != null) return Ok(readGenreDtos);
         return NotFound();
     }
 
     [HttpGet("MoviesList")]
     //[Authorize(Roles = "admin")]
-    public IActionResult GetMoviesListOfGenres()
+    public IActionResult GetMoviesListOfGenres([FromQuery] int skip = 0, [FromQuery] int take = 20)
     {
-        IEnumerable<CustomReadGenreDto> customReadGenreDtos = _genreService.GetMoviesListOfGenres();
+        IEnumerable<CustomReadGenreDto> customReadGenreDtos = _genreService.GetMoviesListOfGenres(skip, take);
         if (customReadGenreDtos != null) return Ok(customReadGenreDtos);
         return NotFound();
     }

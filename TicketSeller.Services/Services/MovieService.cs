@@ -37,9 +37,9 @@ public class MovieService : IMovieService
         return _mapper.Map<ReadMovieDto>(movie);
     }
 
-    public IEnumerable<ReadMovieDto> GetMovies()
+    public IEnumerable<ReadMovieDto> GetMovies(int skip, int take)
     {
-        IEnumerable<Movie> movies = _unitOfWork.Movie.GetAll();
+        IEnumerable<Movie> movies = _unitOfWork.Movie.GetAll().Skip(skip).Take(take);
         IEnumerable<ReadMovieDto> readMoviesDto = _mapper.Map<List<ReadMovieDto>>(movies);
         return readMoviesDto;
     }
@@ -54,9 +54,14 @@ public class MovieService : IMovieService
         return null;
     }
 
-    public IEnumerable<ReadMovieDto>? GetMoviesByGenre(int genreId)
+    public IEnumerable<ReadMovieDto>? GetMoviesByGenre(int genreId, int skip, int take)
     {
-        List<MovieGenre> movieGenres = _unitOfWork.MovieGenre.GetAll().Where(x => x.GenreId == genreId).ToList();
+        List<MovieGenre> movieGenres = _unitOfWork.MovieGenre
+            .GetAll()
+            .Where(x => x.GenreId == genreId)
+            .Skip(skip)
+            .Take(take)
+            .ToList();
         if (movieGenres.Count == 0) return null;
         var movies = new List<Movie>();
         foreach (MovieGenre movieGenre in movieGenres)
@@ -67,9 +72,14 @@ public class MovieService : IMovieService
         return readMoviesDto;
     }
 
-    public IEnumerable<ReadMovieDto> GetMoviesByCinema(int cinemaId)
+    public IEnumerable<ReadMovieDto> GetMoviesByCinema(int cinemaId, int skip, int take)
     {
-        List<MovieSession> movieSessions = _unitOfWork.MovieSession.GetAll().Where(x => x.CinemaId == cinemaId).ToList();
+        List<MovieSession> movieSessions = _unitOfWork.MovieSession
+            .GetAll()
+            .Where(x => x.CinemaId == cinemaId)
+            .Skip(skip)
+            .Take(take)
+            .ToList();
         if (movieSessions.Count == 0) return null;
         var movies = new List<Movie>();
         foreach(MovieSession movieSession in movieSessions)

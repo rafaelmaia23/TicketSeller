@@ -44,9 +44,9 @@ public class MovieSessionService : IMovieSessionService
         return Result.Fail("Movie Room is not available");
     }       
 
-    public IEnumerable<ReadMovieSessionDto> GetMovieSessions()
+    public IEnumerable<ReadMovieSessionDto> GetMovieSessions(int skip, int take)
     {
-        IEnumerable<MovieSession> movieSessions = _unitOfWork.MovieSession.GetAll();
+        IEnumerable<MovieSession> movieSessions = _unitOfWork.MovieSession.GetAll().Skip(skip).Take(take);
         IEnumerable<ReadMovieSessionDto> readMovieSessionDtos = _mapper.Map<List<ReadMovieSessionDto>>(movieSessions);
         return readMovieSessionDtos;
     }
@@ -62,24 +62,24 @@ public class MovieSessionService : IMovieSessionService
         return null;
     }
 
-    public IEnumerable<ReadMovieSessionDto> GetMovieSessionsByCinema(int cinemaId)
+    public IEnumerable<ReadMovieSessionDto> GetMovieSessionsByCinema(int cinemaId, int skip, int take)
     {
         Cinema cinema = _unitOfWork.Cinema.GetById(x => x.Id == cinemaId);
         if (cinema == null) return null;
-        IEnumerable<MovieSession> movieSessions = cinema.MovieSessions.ToList();
+        IEnumerable<MovieSession> movieSessions = cinema.MovieSessions.Skip(skip).Take(take).ToList();
         IEnumerable<ReadMovieSessionDto> readMovieSessionDtos = _mapper.Map<List<ReadMovieSessionDto>>(movieSessions);
         return readMovieSessionDtos;
     }
 
-    public IEnumerable<ReadMovieSessionDto>? GetMovieSessionsByMovie(int movieId)
+    public IEnumerable<ReadMovieSessionDto>? GetMovieSessionsByMovie(int movieId, int skip, int take)
     {
         Movie movie = _unitOfWork.Movie.GetById(x => x.Id == movieId);
         if (movie == null) return null;
-        IEnumerable<MovieSession> movieSessions = movie.MovieSessions.ToList();
+        IEnumerable<MovieSession> movieSessions = movie.MovieSessions.Skip(skip).Take(take).ToList();
         IEnumerable<ReadMovieSessionDto> readMovieSessionDtos = _mapper.Map<List<ReadMovieSessionDto>>(movieSessions);
         return readMovieSessionDtos;
     }
-    public IEnumerable<ReadMovieSessionDto>? GetMovieSessionsByGenre(int genreId)
+    public IEnumerable<ReadMovieSessionDto>? GetMovieSessionsByGenre(int genreId, int skip, int take)
     {
         Genre genre = _unitOfWork.Genre.GetById(x => x.Id == genreId);
         if (genre == null) return null;
@@ -92,7 +92,7 @@ public class MovieSessionService : IMovieSessionService
             }
         }
         IEnumerable<ReadMovieSessionDto> readMovieSessionDtos = _mapper.Map<List<ReadMovieSessionDto>>(movieSessions);
-        return readMovieSessionDtos;
+        return readMovieSessionDtos.Skip(skip).Take(take);
     }
 
     public Result PutMovieSession(int id, UpdateMovieSessionDto updateMovieSessionDto)

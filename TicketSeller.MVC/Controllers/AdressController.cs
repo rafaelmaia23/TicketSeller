@@ -28,9 +28,9 @@ public class AdressController : ControllerBase
 
     [HttpGet]
     //[Authorize(Roles = "admin")]
-    public IActionResult GetAdresses()
+    public IActionResult GetAdresses([FromQuery] int skip = 0, [FromQuery] int take = 20)
     {
-        IEnumerable<ReadAdressDto> readAdressDtos = _adressService.GetAdresses();
+        IEnumerable<ReadAdressDto> readAdressDtos = _adressService.GetAdresses(skip, take);
         if (readAdressDtos != null) return Ok(readAdressDtos);
         return NotFound();
     }

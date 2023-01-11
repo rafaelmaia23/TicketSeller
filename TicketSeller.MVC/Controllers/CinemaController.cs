@@ -29,9 +29,9 @@ public class CinemaController : ControllerBase
 
     [HttpGet]
     //[Authorize(Roles = "admin, client")]
-    public IActionResult GetCinemas()
+    public IActionResult GetCinemas([FromQuery] int skip = 0, [FromQuery] int take = 20)
     {
-        IEnumerable<ReadCinemaDto> readCinemaDtos = _cinemaService.GetCinemas();
+        IEnumerable<ReadCinemaDto> readCinemaDtos = _cinemaService.GetCinemas(skip, take);
         if (readCinemaDtos != null) return Ok(readCinemaDtos);
         return NotFound();
     }
@@ -47,9 +47,9 @@ public class CinemaController : ControllerBase
 
     [HttpGet("Movie/{movieId}")]
     //[Authorize(Roles = "admin, client")]
-    public IActionResult GetCinemasByMovie(int movieId)
+    public IActionResult GetCinemasByMovie(int movieId, [FromQuery] int skip = 0, [FromQuery] int take = 20)
     {
-        IEnumerable<ReadCinemaDto> readCinemaDtos = _cinemaService.GetCinemasByMovie(movieId);
+        IEnumerable<ReadCinemaDto> readCinemaDtos = _cinemaService.GetCinemasByMovie(movieId, skip, take);
         if (readCinemaDtos != null) return Ok(readCinemaDtos);
         return NotFound();
     }

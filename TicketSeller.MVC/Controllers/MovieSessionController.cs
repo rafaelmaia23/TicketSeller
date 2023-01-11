@@ -32,9 +32,9 @@ public class MovieSessionController : ControllerBase
 
     [HttpGet]
     //[Authorize(Roles = "admin, client")]
-    public IActionResult GetMovieSessions()
+    public IActionResult GetMovieSessions([FromQuery] int skip = 0, [FromQuery] int take = 20)
     {
-        IEnumerable<ReadMovieSessionDto> readMovieSessionDtos = _movieSessionService.GetMovieSessions();
+        IEnumerable<ReadMovieSessionDto> readMovieSessionDtos = _movieSessionService.GetMovieSessions(skip, take);
         if(readMovieSessionDtos != null) return Ok(readMovieSessionDtos);
         return NotFound();
     }
@@ -50,27 +50,27 @@ public class MovieSessionController : ControllerBase
 
     [HttpGet("Cinema/{cinemaId}")]
     //[Authorize(Roles = "admin, client")]
-    public IActionResult GetMovieSessionsByCinema(int cinemaId)
+    public IActionResult GetMovieSessionsByCinema(int cinemaId, [FromQuery] int skip = 0, [FromQuery] int take = 20)
     {
-        IEnumerable<ReadMovieSessionDto> readMovieSessionDtos = _movieSessionService.GetMovieSessionsByCinema(cinemaId);
+        IEnumerable<ReadMovieSessionDto> readMovieSessionDtos = _movieSessionService.GetMovieSessionsByCinema(cinemaId, skip, take);
         if (readMovieSessionDtos != null) return Ok(readMovieSessionDtos);
         return NotFound();
     }
 
     [HttpGet("Movie/{movieId}")]
     //[Authorize(Roles = "admin, client")]
-    public IActionResult GetMovieSessionsByMovie(int movieId)
+    public IActionResult GetMovieSessionsByMovie(int movieId, [FromQuery] int skip = 0, [FromQuery] int take = 20)
     {
-        IEnumerable<ReadMovieSessionDto> readMovieSessionDtos = _movieSessionService.GetMovieSessionsByMovie(movieId);
+        IEnumerable<ReadMovieSessionDto> readMovieSessionDtos = _movieSessionService.GetMovieSessionsByMovie(movieId, skip, take);
         if (readMovieSessionDtos != null) return Ok(readMovieSessionDtos);
         return NotFound();
     }
 
     [HttpGet("Genre/{genreId}")]
     //[Authorize(Roles = "admin, client")]
-    public IActionResult GetMovieSessionsByGenre(int genreId)
+    public IActionResult GetMovieSessionsByGenre(int genreId, [FromQuery] int skip = 0, [FromQuery] int take = 20)
     {
-        IEnumerable<ReadMovieSessionDto> readMovieSessionDtos = _movieSessionService.GetMovieSessionsByGenre(genreId);
+        IEnumerable<ReadMovieSessionDto> readMovieSessionDtos = _movieSessionService.GetMovieSessionsByGenre(genreId, skip, take);
         if (readMovieSessionDtos != null) return Ok(readMovieSessionDtos);
         return NotFound();
     }
