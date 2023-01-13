@@ -1,8 +1,5 @@
 ﻿using FluentResults;
-using Microsoft.AspNetCore.JsonPatch;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using TicketSeller.Models.Dtos.MovieSessionDto;
-using TicketSeller.Models.Models;
 
 namespace TicketSeller.Services.Services.IServices;
 

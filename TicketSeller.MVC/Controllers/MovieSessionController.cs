@@ -23,11 +23,12 @@ public class MovieSessionController : ControllerBase
     public IActionResult AddMovieSession([FromBody] CreateMovieSessionDto createMovieSessionDto)
     {
         Result<ReadMovieSessionDto> result = _movieSessionService.AddMovieSessions(createMovieSessionDto);
+        if (result == null) return Conflict("Movie Room is not available");
         if (result.IsSuccess)
         {
             return CreatedAtAction(nameof(GetMovieSessionById), new { id = result.Value.Id }, result.Value);
         }
-        return Conflict(result.Reasons);
+        return NotFound(result.Reasons);
     }
 
     [HttpGet]
@@ -80,8 +81,9 @@ public class MovieSessionController : ControllerBase
     public IActionResult PutMovieSession(int id, [FromBody] UpdateMovieSessionDto updateMovieSessionDto)
     {
         Result result = _movieSessionService.PutMovieSession(id, updateMovieSessionDto);
+        if(result == null) return Conflict("Movie Room is not available");
         if (result.IsSuccess) return NoContent();
-        return NotFound();
+        return NotFound(result.Reasons);
     }
 
     //[HttpPatch("{id}")]
