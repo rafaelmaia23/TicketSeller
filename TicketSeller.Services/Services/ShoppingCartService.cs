@@ -1,8 +1,5 @@
 ﻿using AutoMapper;
 using FluentResults;
-using Microsoft.AspNetCore.Identity;
-using System.Runtime.ConstrainedExecution;
-using System.Security.Claims;
 using TicketSeller.DAL.Repository.IRepository;
 using TicketSeller.Models.Dtos.ShoppingCartDto;
 using TicketSeller.Models.Models;
@@ -34,13 +31,25 @@ public class ShoppingCartService : IShoppingCartService
             }
         }
 
-        ShoppingCart shoppingCart = _mapper.Map<ShoppingCart>(createShoppingCartDto);
+        ShoppingCart shoppingCart = _mapper.Map<ShoppingCart>(createShoppingCartDto);        
         shoppingCart.UserId = Convert.ToInt32(userId);
-        return Result.Ok();
+        User user = _unitOfWork.User.GetById(x => x.Id == shoppingCart.UserId);
+        shoppingCart.User = user;
+        shoppingCart.TotalPrice = shoppingCart.MovieSession.Price * shoppingCart.TicketsCount;
+        _unitOfWork.ShoppingCart.Add(shoppingCart);
+        _unitOfWork.Save();
+        ReadShoppingCartDto readShoppingCartDto = _mapper.Map<ReadShoppingCartDto>(shoppingCart);
+        return Result.Ok(readShoppingCartDto);
     }
 
     public ReadShoppingCartDto GetShoppingCartById(int id)
     {
-        throw new NotImplementedException();
+        ShoppingCart shoppingCart = _unitOfWork.ShoppingCart.GetById(x => x.Id == id);
+        if (shoppingCart != null)
+        {
+            ReadShoppingCartDto readShoppingCartDto = _mapper.Map<ReadShoppingCartDto>(shoppingCart);
+            return readShoppingCartDto;
+        }
+        return null;
     }
 }
