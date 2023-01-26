@@ -1,8 +1,8 @@
-﻿namespace TicketSeller.Models.Models;
+﻿using Microsoft.AspNetCore.Identity;
 
-public class User
+namespace TicketSeller.Models.Models;
+
+public class User : IdentityUser<int>
 {
-    public int Id { get; set; }
-    public string Username { get; set; } = null!;
-    public string Email { get; set; } = null!;
+    public virtual List<Ticket> Tickets { get; set; }
 }

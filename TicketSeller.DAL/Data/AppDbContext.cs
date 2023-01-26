@@ -1,17 +1,23 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using TicketSeller.Models.Models;
 
 namespace TicketSeller.DAL.Data;
 
-public class AppDbContext : DbContext
+public class AppDbContext : IdentityDbContext<User, IdentityRole<int>, int>
 {
-    public AppDbContext(DbContextOptions<AppDbContext> opt) : base(opt)
+    private readonly IConfiguration _config;
+    public AppDbContext(DbContextOptions<AppDbContext> opt, IConfiguration config) : base(opt)
     {
-
+        _config = config;
     }
 
     protected override void OnModelCreating(ModelBuilder builder)
-    {            
+    {
+        base.OnModelCreating(builder);
+
         builder.Entity<MovieGenre>()
             .HasOne(movieGenres => movieGenres.Movie)
             .WithMany(movie => movie.MovieGenres)
@@ -41,6 +47,49 @@ public class AppDbContext : DbContext
             .HasMany(m => m.Seats)
             .WithOne(s => s.MovieSession)
             .HasForeignKey(s => s.MovieSessionId);
+
+        User admin = new User
+        {
+            UserName = "admin",
+            NormalizedUserName = "ADMIN",
+            Email = "admin@admin.com",
+            NormalizedEmail = "ADMIN@ADMIN.COM",
+            EmailConfirmed = true,
+            SecurityStamp = Guid.NewGuid().ToString(),
+            Id = 99999
+        };
+
+        PasswordHasher<User> hasher = new PasswordHasher<User>();
+
+        admin.PasswordHash = hasher.HashPassword(admin, _config.GetValue<string>("admininfo:password"));
+
+        builder.Entity<User>().HasData(admin);
+
+        builder.Entity<IdentityRole<int>>().HasData(
+            new IdentityRole<int>
+            {
+                Id = 99999,
+                Name = "admin",
+                NormalizedName = "ADMIN"
+            }
+        );
+
+        builder.Entity<IdentityRole<int>>().HasData(
+            new IdentityRole<int>
+            {
+                Id = 99998,
+                Name = "client",
+                NormalizedName = "CLIENT"
+            }
+        );
+
+        builder.Entity<IdentityUserRole<int>>().HasData(
+            new IdentityUserRole<int>
+            {
+                RoleId = 99999,
+                UserId = 99999
+            }
+        );
     }
 
     public DbSet<Movie> Movies { get; set; }
@@ -50,4 +99,6 @@ public class AppDbContext : DbContext
     public DbSet<Cinema> Cinemas { get; set; }
     public DbSet<MovieSession> MovieSessions { get; set; }
     public DbSet<Seat> Seats { get; set; }
+    public DbSet<ShoppingCart> ShoppingCarts { get; set; }
+    public DbSet<Ticket> Tickets { get; set; }
 }

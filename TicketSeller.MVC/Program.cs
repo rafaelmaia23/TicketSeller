@@ -7,6 +7,7 @@ using System.Text;
 using TicketSeller.DAL.Data;
 using TicketSeller.DAL.Repository;
 using TicketSeller.DAL.Repository.IRepository;
+using TicketSeller.Models.Models;
 using TicketSeller.Services.Services;
 using TicketSeller.Services.Services.IServices;
 
@@ -20,12 +21,10 @@ builder.Configuration.AddUserSecrets<Program>();
 builder.Services.AddDbContext<AppDbContext>(options => options
     .UseLazyLoadingProxies()
     .UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddDbContext<UserDbContext>(options => options.UseSqlServer(
-    builder.Configuration.GetConnectionString("UserConnection")));
-builder.Services.AddIdentity<IdentityUser<int>, IdentityRole<int>>(
+builder.Services.AddIdentity<User, IdentityRole<int>>(
     opt => opt.SignIn.RequireConfirmedEmail = true
     )
-    .AddEntityFrameworkStores<UserDbContext>()
+    .AddEntityFrameworkStores<AppDbContext>()
     .AddDefaultTokenProviders();
 builder.Services.AddAuthentication(auth =>
 {
@@ -56,6 +55,7 @@ builder.Services.AddScoped<IRegisterService, RegisterService>();
 builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<ILoginTokenService, LoginTokenService>();
 builder.Services.AddScoped<ILogoutService, LogoutService>();
+builder.Services.AddScoped<IShoppingCartService, ShoppingCartService>();
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

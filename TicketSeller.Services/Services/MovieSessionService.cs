@@ -4,7 +4,6 @@ using TicketSeller.DAL.Repository.IRepository;
 using TicketSeller.Models.Dtos.MovieSessionDto;
 using TicketSeller.Models.Models;
 using TicketSeller.Services.Services.IServices;
-
 namespace TicketSeller.Services.Services;
 
 public class MovieSessionService : IMovieSessionService
@@ -159,19 +158,6 @@ public class MovieSessionService : IMovieSessionService
             //check if any movie session in db have a end time that overlaps the star and end times of the movie session in the parameter
             (s.EndDateTime > movieSession.StartDateTime &&
             s.EndDateTime <= movieSession.EndDateTime)));
-
-
-        //bool isRoomAvailable = !_unitOfWork.MovieSession.Any(s =>
-        //    //check if any movie session in db have the same cinema as the movie session in the parameter
-        //    s.CinemaId == movieSession.CinemaId &&
-        //    //check if any movie session in db have the same room number as the movie session in the parameter
-        //    s.MovieRoomNumber == movieSession.MovieRoomNumber &&
-        //    //check if any movie session in db have a star time that overlaps the star and end times of the movie session in the parameter
-        //    ((s.StartDateTime >= movieSession.StartDateTime &&
-        //    s.StartDateTime < movieSession.EndDateTime) ||
-        //    //check if any movie session in db have a end time that overlaps the star and end times of the movie session in the parameter
-        //    (s.EndDateTime > movieSession.StartDateTime &&
-        //    s.EndDateTime <= movieSession.EndDateTime)));
 
         return isRoomAvailable;
     }

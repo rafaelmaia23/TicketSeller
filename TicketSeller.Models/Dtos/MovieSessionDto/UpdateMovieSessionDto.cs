@@ -12,4 +12,5 @@ public class UpdateMovieSessionDto
     public int MovieRoomNumber { get; set; }
     [Required]
     public DateTime StartDateTime { get; set; }
+    public double Price { get; set; }
 }

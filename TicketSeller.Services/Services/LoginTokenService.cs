@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using TicketSeller.Models.Models;
 using TicketSeller.Models.Tokens;
 using TicketSeller.Services.Services.IServices;
 
@@ -10,7 +12,7 @@ namespace TicketSeller.Services.Services;
 
 public class LoginTokenService : ILoginTokenService
 {
-    public LoginToken CreateLoginToken(IdentityUser<int> user, string? role)
+    public LoginToken CreateLoginToken(User user, string? role)
     {
         Claim[] userClaims = new Claim[]
         {

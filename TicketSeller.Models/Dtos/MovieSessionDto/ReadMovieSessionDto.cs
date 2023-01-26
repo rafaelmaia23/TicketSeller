@@ -22,5 +22,6 @@ public class ReadMovieSessionDto
     public virtual ICollection<Seat> Seats { get; set; } = null!;
     public DateTime StartDateTime { get; set; }
     public DateTime EndDateTime { get; set; }
-    
+    public double Price { get; set; }
+
 }

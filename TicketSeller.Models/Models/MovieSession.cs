@@ -24,4 +24,5 @@ public class MovieSession
     [Required]
     public DateTime StartDateTime { get; set; }
     public DateTime EndDateTime { get; set; }
+    public double Price { get; set; }
 }

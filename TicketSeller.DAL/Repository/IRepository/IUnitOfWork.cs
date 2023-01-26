@@ -9,5 +9,7 @@ public interface IUnitOfWork
     ICinemaRepository Cinema { get; }
     IMovieSessionRepository MovieSession { get; }
     IUserRepository User { get; }
+    ITicketRepository Ticket { get; }
+    IShoppingCartRepository ShoppingCart { get; }
     void Save();
 }

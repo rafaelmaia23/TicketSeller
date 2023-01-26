@@ -31,7 +31,7 @@ public class Repository<T> : IRepository<T> where T : class
         return dbSet.ToList();
     }
 
-    public virtual T GetById(Expression<Func<T, bool>> expression)
+    public virtual T? GetById(Expression<Func<T, bool>> expression)
     {
         return _db.Set<T>().FirstOrDefault(expression);
     }
