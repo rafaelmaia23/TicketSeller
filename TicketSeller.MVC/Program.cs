@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Stripe;
+using System.Security.Claims;
 using System.Text;
 using TicketSeller.DAL.Data;
 using TicketSeller.DAL.Repository;
@@ -17,7 +19,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddControllers().AddNewtonsoftJson();
-builder.Configuration.AddUserSecrets<Program>();
 builder.Services.AddDbContext<AppDbContext>(options => options
     .UseLazyLoadingProxies()
     .UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -44,6 +45,9 @@ builder.Services.AddAuthentication(auth =>
         ClockSkew = TimeSpan.Zero
     };
 });
+builder.Services.Configure<IdentityOptions>(options =>
+    options.ClaimsIdentity.UserIdClaimType = ClaimTypes.NameIdentifier);
+StripeConfiguration.ApiKey = builder.Configuration.GetSection("Stripe:SecretKey").Get<string>();
 //builder.Services.AddScoped<ModelStateDictionary>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IMovieService, MovieService>();
@@ -69,6 +73,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    builder.Configuration.AddUserSecrets<Program>();
 }
 
 app.UseHttpsRedirection();

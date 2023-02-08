@@ -23,7 +23,8 @@ public class UnitOfWork : IUnitOfWork
         MovieSession = new MovieSessionRepository(_db);
         User = new UserRepository(_db, _signInManager, _useManager);
         Ticket = new TicketRepository(_db);
-        ShoppingCart = new ShoppingCartRepository(_db);        
+        ShoppingCart = new ShoppingCartRepository(_db);
+        Seat = new SeatRepository(_db);
     }
     public IMovieRepository Movie { get; private set; }
     public IGenreRepository Genre { get; private set; }
@@ -34,6 +35,7 @@ public class UnitOfWork : IUnitOfWork
     public IUserRepository User { get; private set; }
     public ITicketRepository Ticket { get; private set; }
     public IShoppingCartRepository ShoppingCart { get; private set; }
+    public ISeatRepository Seat { get; private set; }
 
     public void Save()
     {

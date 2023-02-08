@@ -1,8 +1,7 @@
 ﻿using FluentResults;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using TicketSeller.Models.Dtos.MovieSessionDto;
+using TicketSeller.Models.Dtos.SeatDto;
 using TicketSeller.Services.Services.IServices;
 
 namespace TicketSeller.API.Controllers;
@@ -73,6 +72,15 @@ public class MovieSessionController : ControllerBase
     {
         IEnumerable<ReadMovieSessionDto> readMovieSessionDtos = _movieSessionService.GetMovieSessionsByGenre(genreId, skip, take);
         if (readMovieSessionDtos != null) return Ok(readMovieSessionDtos);
+        return NotFound();
+    }
+
+    [HttpGet("Seats/{movieSessionId}")]
+    //[Authorize(Roles = "admin, client")]
+    public IActionResult GetSeatsOfMovieSessionById(int movieSessionId)
+    {
+        IEnumerable<ReadSeatDto> seats = _movieSessionService.GetSeatsOfMovieSessionById(movieSessionId);
+        if (seats != null) return Ok(seats);
         return NotFound();
     }
 

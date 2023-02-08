@@ -2,6 +2,7 @@
 using FluentResults;
 using TicketSeller.DAL.Repository.IRepository;
 using TicketSeller.Models.Dtos.MovieSessionDto;
+using TicketSeller.Models.Dtos.SeatDto;
 using TicketSeller.Models.Models;
 using TicketSeller.Services.Services.IServices;
 namespace TicketSeller.Services.Services;
@@ -94,6 +95,15 @@ public class MovieSessionService : IMovieSessionService
         return readMovieSessionDtos.Skip(skip).Take(take);
     }
 
+    public IEnumerable<ReadSeatDto> GetSeatsOfMovieSessionById(int movieSessionId)
+    {
+        List<Seat> seats = _unitOfWork.Seat
+            .GetAll().Where(x => x.MovieSessionId == movieSessionId).ToList();
+        if (seats == null) return null;
+        List<ReadSeatDto> readSeatDtos = _mapper.Map<List<ReadSeatDto>>(seats);
+        return readSeatDtos;
+    }
+
     public Result PutMovieSession(int id, UpdateMovieSessionDto updateMovieSessionDto)
     {
         Movie movie = _unitOfWork.Movie.GetById(x => x.Id == updateMovieSessionDto.MovieId);
@@ -160,5 +170,5 @@ public class MovieSessionService : IMovieSessionService
             s.EndDateTime <= movieSession.EndDateTime)));
 
         return isRoomAvailable;
-    }
+    }   
 }

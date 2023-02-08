@@ -11,7 +11,8 @@ public interface IUserRepository : IRepository<User>
     Task<IdentityResult> CreateAsync(User user, string password);
     Task<string> GenerateEmailConfirmationTokenAsync(User user);
     Task<string> GeneratePasswordResetTokenAsync(User user);
-    User? GetByUsername(Func<User, bool> func);
+    User? GetByUsername(Expression<Func<User, bool>> expression);
+    //User? GetByUsername(Func<User, bool> func);
     User? GetIdentityUserByEmail(string email);
     Task<IList<string>> GetRolesAsync(User? user);
     Task<SignInResult> PasswordSignInAsync(string username, string password, bool isPersistent, bool lockoutOnFailure);

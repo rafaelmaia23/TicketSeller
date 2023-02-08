@@ -381,6 +381,10 @@
             "Microsoft.Extensions.Configuration.Binder": {
               "target": "Package",
               "version": "[7.0.1, )"
+            },
+            "Stripe.net": {
+              "target": "Package",
+              "version": "[41.5.0, )"
             }
           },
           "imports": [

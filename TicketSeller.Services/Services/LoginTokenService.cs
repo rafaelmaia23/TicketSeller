@@ -17,7 +17,8 @@ public class LoginTokenService : ILoginTokenService
         Claim[] userClaims = new Claim[]
         {
             new Claim("username", user.UserName),
-            new Claim("id", user.Id.ToString()),
+            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+            //new Claim("id", user.Id.ToString()),
             new Claim(ClaimTypes.Role, role),
         };
 

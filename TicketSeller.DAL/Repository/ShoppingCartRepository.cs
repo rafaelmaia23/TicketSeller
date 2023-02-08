@@ -1,4 +1,6 @@
-﻿using TicketSeller.DAL.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
+using TicketSeller.DAL.Data;
 using TicketSeller.DAL.Repository.IRepository;
 using TicketSeller.Models.Models;
 
@@ -10,5 +12,17 @@ public class ShoppingCartRepository : Repository<ShoppingCart>, IShoppingCartRep
     public ShoppingCartRepository(AppDbContext db) : base(db)
     {
         _db = db;
+    }
+
+    public override ShoppingCart? GetById(Expression<Func<ShoppingCart, bool>> expression)
+    {
+        return _db.ShoppingCarts
+            .Include(x => x.Seats)
+            .FirstOrDefault(expression);
+    }
+
+    public void Update(ShoppingCart shoppingCart)
+    {
+        _db.ShoppingCarts.Update(shoppingCart);
     }
 }

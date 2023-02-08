@@ -11,5 +11,6 @@ public interface IUnitOfWork
     IUserRepository User { get; }
     ITicketRepository Ticket { get; }
     IShoppingCartRepository ShoppingCart { get; }
+    ISeatRepository Seat { get; }
     void Save();
 }

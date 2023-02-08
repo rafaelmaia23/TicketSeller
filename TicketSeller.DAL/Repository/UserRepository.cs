@@ -64,10 +64,10 @@ public class UserRepository : Repository<User>, IUserRepository
                 .FirstOrDefault(expression);
     }
 
-    public User? GetByUsername(Func<User, bool> func)
-    {
-        throw new NotImplementedException();
-    }
+    //public User? GetByUsername(Func<User, bool> func)
+    //{
+    //    throw new NotImplementedException();
+    //}
 
     public User? GetIdentityUserByEmail(string email)
     {

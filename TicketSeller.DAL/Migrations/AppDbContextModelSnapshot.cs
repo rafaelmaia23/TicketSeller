@@ -58,14 +58,14 @@ namespace TicketSeller.DAL.Migrations
                         new
                         {
                             Id = 99999,
-                            ConcurrencyStamp = "c5bee023-2697-4211-b398-9e84c8cb5dd0",
+                            ConcurrencyStamp = "18e0182d-3001-4dbb-8cc0-f07e0f4d48a2",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 99998,
-                            ConcurrencyStamp = "b16bd4ad-45f0-4486-a06f-0b3997bdef74",
+                            ConcurrencyStamp = "e85acc4b-3d7d-46db-a7fd-a480cb701148",
                             Name = "client",
                             NormalizedName = "CLIENT"
                         });
@@ -441,6 +441,10 @@ namespace TicketSeller.DAL.Migrations
                     b.Property<int>("MovieSessionId")
                         .HasColumnType("int");
 
+                    b.Property<string>("PaymentIntentId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("SeatId")
                         .HasColumnType("int");
 
@@ -530,15 +534,15 @@ namespace TicketSeller.DAL.Migrations
                         {
                             Id = 99999,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1f217059-5fd5-420b-9f0b-e779ff0c807d",
+                            ConcurrencyStamp = "7e4711d6-6ddc-40c9-b92b-5417531963ec",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEBYGjIE4SidfO8JEpiiPK+c0bjrr3Pd0iETg3QPWNhweup0yf8eMCtujXctvGLDf6A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJeLjheD7BgpyY4ddoDet58y5CH5ITd63pcPVmwv8XXgoTkaQ2JBSMmuIXEmCRyfeA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "c5efd675-4539-438e-8db3-d201e4cf5605",
+                            SecurityStamp = "d8a7e8ce-4e88-4c18-b366-b0f54e175ca8",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         });

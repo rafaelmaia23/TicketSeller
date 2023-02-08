@@ -1,5 +1,6 @@
 ﻿using FluentResults;
 using TicketSeller.Models.Dtos.MovieSessionDto;
+using TicketSeller.Models.Dtos.SeatDto;
 
 namespace TicketSeller.Services.Services.IServices;
 
@@ -13,6 +14,7 @@ public interface IMovieSessionService
     IEnumerable<ReadMovieSessionDto> GetMovieSessionsByGenre(int genreId, int skip, int take);
     Result PutMovieSession(int id, UpdateMovieSessionDto updateMovieSessionDto);
     Result DeleteMovieSession(int id);
+    IEnumerable<ReadSeatDto> GetSeatsOfMovieSessionById(int movieSessionId);
     //Result PatchMovieSession(int id, JsonPatchDocument<UpdateMovieSessionDto> jsonPatchDocument, ModelStateDictionary modelState);
 
 }

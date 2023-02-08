@@ -17,4 +17,5 @@ public class Ticket
     public virtual Seat Seat { get; set; }
     public DateTime Date { get; set; }
     public bool IsUsed { get; set; } = false;
+    public string PaymentIntentId { get; set; }
 }

@@ -10,6 +10,8 @@ public class ShoppingCartProfile : Profile
 	{
 		CreateMap<CreateShoppingCartDto, ShoppingCart>();
 		CreateMap<UpdateShoppingCartDto, ShoppingCart>();
-		CreateMap<ShoppingCart, ReadShoppingCartDto>();
+		CreateMap<ShoppingCart, ReadShoppingCartDto>().
+			ForMember(x => x.UserName, opt => opt.MapFrom(
+				x => x.User.UserName));
 	}
 }
